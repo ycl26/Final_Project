@@ -1,0 +1,105 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+
+            <div class="form">
+                <input type="radio"  name="usertype" value="candidate" checked="checked" (click)="setUserTypeCan(true)">Candidate
+                <input type="radio" name="usertype" value="company" (click)="setUserTypeCan(false)">Company
+                <ul class="tab-group">
+                    <li class="tab" [ngClass]="{'active': isSingUpScreenActive()}" (click)="displaySingUp()"><a>Sign
+                            Up</a></li>
+                    <li class="tab" [ngClass]="{'active': isLogInScreenActive()}" (click)="displayLogIn()"><a>Log In</a>
+                    </li>
+                </ul>
+
+                <div class="tab-content" *ngIf="isSingUpScreenActive() && userTypeCand">
+                    <div id="signup">
+                        <h1>Sign Up for Free</h1>
+                        <form>
+                            <div class="top-row">
+                                <div class="field-wrap">
+                                    <input type="text" placeholder="First Name*" required autocomplete="Off"
+                                        name="firstName" [(ngModel)]='user.firstName' />
+                                </div>
+                                <div class="field-wrap">
+                                    <input type="text" placeholder="Last Name*" required autocomplete="off"
+                                        name="lastName" [(ngModel)]='user.lastName' />
+                                </div>
+                            </div>
+                            <div class="field-wrap">
+                                <input type="email" placeholder="Email Address*" required autocomplete="off"
+                                    name="email" [(ngModel)]='user.email' />
+                            </div>
+                            <div class="field-wrap">
+                                <input type="password" placeholder="Set A Password*" required autocomplete="off"
+                                    name="psw" [(ngModel)]='user.psw' />
+                            </div>
+                            <button type="submit" class="button button-block" (click)="handleSaveUser(userTypeCand)">Get
+                                Started</button>
+                        </form>
+                    </div>
+                </div>
+                <div class="tab-content" *ngIf="isSingUpScreenActive() && !userTypeCand">
+                        <div id="signup">
+                            <h1>Sign Up for Free</h1>
+                            <form>
+                                <div class="top-row">
+                                    <div class="field-wrap">
+                                        <input type="text" placeholder="Company Name*" required autocomplete="off"
+                                            name="Company Name" [(ngModel)]='company.companyName' />
+                                    </div>                                   
+                                </div>
+                                <div class="field-wrap">
+                                    <input type="email" placeholder="Email Address*" required autocomplete="off"
+                                        name="email" [(ngModel)]='company.email' />
+                                </div>
+                                <div class="field-wrap">
+                                    <input type="password" placeholder="Set A Password*" required autocomplete="off"
+                                        name="psw" [(ngModel)]='company.psw' />
+                                </div>
+                                <button type="submit" class="button button-block" (click)="handleSaveUser(userTypeCand)">Get
+                                    Started</button>
+                            </form>
+                        </div>
+                    </div>
+
+                <div class="tab-content" *ngIf="isLogInScreenActive()">
+                    <div id="login">
+                        <h1>Welcome Back!</h1>
+                        <form>
+                            <div class="field-wrap">
+                                <input type="email" placeholder="Email Address*" required autocomplete="off"
+                                    name="email" [(ngModel)]='user.email' />
+                            </div>
+                            <div class="field-wrap">
+                                <input type="password" placeholder="Password*" required autocomplete="off" name="psw"
+                                    [(ngModel)]='user.psw' />
+                            </div>
+                            <p class="forgot" (click)="displayForgot()"><a>Forgot Password?</a></p>
+                            <button class="button button-block" (click)="handleLogin()">Log In</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="form" *ngIf="isForgotScreenActive()">
+            <div class="form">
+                <div class="tab-content">
+                    <h1>Forgot Password</h1>
+                    <h1 style="font-size:medium"> Enter your email address to reset the password! </h1>
+                </div>
+                <div>
+                    <form>
+                        <input name="email" class="field-wrap" type="text" value="Your e-mail address"
+                            onfocus="this.value = '';"
+                            onblur="if (this.value == '') {this.value = 'Your e-mail address';}"
+                            [(ngModel)]='user.email'>
+                        <button class="button button-block" (click)="handleForgotPassword()">Reset my Password</button>
+                        <!--<input class="button button-block" type="submit" value="Reset my Password">-->
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
