@@ -8,3 +8,8 @@
     margin: 5px;
     color: white;
 }
+#compLogo{
+    float:left;
+    width:30px;
+    max-height:30px;
+}

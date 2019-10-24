@@ -9,12 +9,14 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { AboutUsComponent } from './about-us/about-us.component';
 import { from } from 'rxjs';
+import { JobOffersComponent } from './job-offers/job-offers.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    AboutUsComponent
+    AboutUsComponent,
+    JobOffersComponent
   ],
   imports: [
     BrowserModule,
