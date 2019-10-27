@@ -1,13 +1,16 @@
 <div class="container-fluid" data-spy="scroll">
   <nav class="sticky-top navbar navbar-expand-sm bg-success navbar-dark" style="min-height: 100%">
     <span class="navbar-brand">
-      <img id="compLogo" src="../assets/img/logo.png" alt="Company logo">MyCVOnline
+      <img id="compLogo" src="../assets/img/logo.png" alt="Company logo"  [routerLink]="['/home']" routerLinkActive="active>MyCVOnline">MyCVOnline
     </span>
     <button class="navbar-toggler" data-toggle="collapse" data-target="#myMenu">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="myMenu">
       <ul class="navbar-nav">
+          <li class="nav-item">
+              <a class="nav-link active" [routerLink]="['/login']" routerLinkActive="active" href="#">Login</a>
+            </li>
         <li class="nav-item">
           <a class="nav-link active" [routerLink]="['/about']" routerLinkActive="active" href="#">About Us</a>
         </li>
@@ -19,28 +22,7 @@
   </nav>
 
 
-  <div class="row">
-    <div class="col-lg-8" style="background-color: blue; min-height: 65%">
-      <input>
-      <ul>
-        <li>a</li>
-        <li>a</li>
-        <li>a</li>
-        <li>a</li>
-        <li>a</li>
-        <li>a</li>
-        <li>a</li>
-        <li>a</li>
-        <li>a</li>
-      </ul>
-    </div>
-    <div class="col-lg-4" style="background-color: white; height: 35%">
-      <app-login></app-login>
-      <div class="col-xs-12" style="background-color: red; height:100px"></div>
-    </div>
-  </div>
-
-  
+  <router-outlet></router-outlet>
 
   <footer class="sticky-bottom  bg-dark  bg-primary footer text-light">
     <img src="../assets/img/logo.png" width=30px class="d-inline-block align-top" alt="Company Logo">MyCVOnline
@@ -52,4 +34,4 @@
     <a href="https://twitter.com/"><i id="logoFooter" class="fa fa-twitter w3-hover-opacity"></i></a>
   </footer>
 </div>
-<router-outlet></router-outlet>
+

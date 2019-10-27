@@ -1,0 +1,9 @@
+<p>home works!</p>
+<div class=row>
+<div class="col-lg-8" style=" min-height: 65%">
+    <input placeholder="Job search" [(ngModel)]="filterKeyWord" (keydown)="handleKeydown($event)">
+   <div> <span>
+        <button (click)="onGotoJobsOffers()"> search</button>
+    </span></div>
+</div>
+<div>
