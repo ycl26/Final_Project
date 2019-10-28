@@ -1,9 +1,20 @@
-<p>home works!</p>
-<div class=row>
-<div class="col-lg-8" style=" min-height: 65%">
-    <input placeholder="Job search" [(ngModel)]="filterKeyWord" (keydown)="handleKeydown($event)">
-   <div> <span>
-        <button (click)="onGotoJobsOffers()"> search</button>
-    </span></div>
+<div class="container-fluid">
+    <div class=row>
+        <div class="col-lg-12" style="min-height: 65%">
+            <h1 id="textComments" class="text-lg-left text-info">Find your desired jobs, your new employees or the most
+                demanded jobs in your City. 
+                Get into the working world in a few easy steps. </h1>
+        </div>
+    </div>
+
+    <div class=row>
+        <div class="col-lg-3 text-lg-center">
+            <input id="inputHome" placeholder="Job search" [(ngModel)]="filterKeyWord" (keydown)="handleKeydown($event)">
+            <button id="searchHomebutton" class="btn btn-info btn-text-light" (click)="onGotoJobsOffers()"> search</button>
+        </div>
+        <div class="col-lg-9 text-lg-center">
+            <img id="Img1" src="../assets/img/Img1.jpg" alt="Home Image">
+        </div>
+
+    </div>
 </div>
-<div>

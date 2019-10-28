@@ -1,7 +1,7 @@
 <p>job-offers works!</p>
 <div class="row">
   <div class="col-lg-8" style="background-color: grey; min-height: 65%">
-    <input placeholder="Job search" value="{{keyword}}">
+    <input placeholder="Job search" value="{{keyword}}" [(ngModel)]="filterKeyWord" (keydown)="handleKeydown($event)">
     <ul>
       <li *ngFor='let job of jobs'>{{job.name}}</li>
     </ul>

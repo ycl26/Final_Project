@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Route, ActivatedRoute } from '@angular/router';
+import { Route, ActivatedRoute, Router } from '@angular/router';
 import { SearchJobService } from './services/search-job.service';
 import { AbstractForm } from 'src/infra/form/abstract-form';
 import { takeUntil } from 'rxjs/operators';
@@ -10,11 +10,13 @@ import { takeUntil } from 'rxjs/operators';
   styleUrls: ['./job-offers.component.css']
 })
 export class JobOffersComponent extends AbstractForm implements OnInit {
-  keyword;
-  jobs;
+  keyword:any;
+  jobs:object;
+  filterKeyWord:any;
   constructor(
     private route: ActivatedRoute,
     private searchJobService: SearchJobService,
+    private routerService: Router,
   ) {
     super();
   }
@@ -31,6 +33,15 @@ export class JobOffersComponent extends AbstractForm implements OnInit {
 
     this.keyword = keyword;
 
+  }
+  handleKeydown(event: KeyboardEvent) {
+    if(event.key === "Enter" ){
+      this.onGotoJobsOffers();
+    }
+  }
+  onGotoJobsOffers() {
+    this.routerService.navigate(['jobOffers'], { queryParams: { keyword: this.filterKeyWord } });
+    console.log(this.filterKeyWord);
   }
 
 }
