@@ -1,16 +1,52 @@
-<p>job-offers works!</p>
-<div class="row">
-  <div class="col-lg-8" style="background-color: grey; min-height: 65%">
-    <input placeholder="Job search" value="{{keyword}}" [(ngModel)]="filterKeyWord" (keydown)="handleKeydown($event)">
-    <ul>
-      <li *ngFor='let job of jobs'>{{job.name}}</li>
-    </ul>
+<div class="container-fluid">  
+  <div class="row">
+    <section>
+      <div class="btn-group">
+          <input id="inputSearch" placeholder="Job search"  [(ngModel)]="filterKeyWord" (keydown)="handleKeydown($event)">
+      </div>
+      <div class="btn-group">       
+        <button id="filterButton" type="button" class="btn dropdown-toggle btn-light text-info"
+          data-toggle="dropdown">Job Type</button>
+        <div class="dropdown-menu">
+          <input id="inputJobtype" class="dropdown-item" type="checkbox" name="jobtype" value="full">Full-Time
+          <input id="inputJobtype" class="dropdown-item" type="checkbox" name="jobtype" value="part">Part-Time
+          <input id="inputJobtype" class="dropdown-item" type="checkbox" name="jobtype" value="contract">Contract
+          <input id="inputJobtype" class="dropdown-item" type="checkbox" name="jobtype" value="temporary">Temporary
+        </div>
+      </div>
+
+      <div class="btn-group">
+        <button id="filterButton" type="button" class="btn dropdown-toggle btn-light text-info"
+          data-toggle="dropdown">Experience Level</button>
+        <div class="dropdown-menu">
+          <input id="inputExpAndDate" class="dropdown-item" type="checkbox" name="experiencetype" value="entry">Entry Level
+          <input id="inputExpAndDate" class="dropdown-item" type="checkbox" name="experiencetype" value="junior">Junior Level
+          <input id="inputExpAndDate" class="dropdown-item" type="checkbox" name="experiencetype" value="senior">Senior Level
+          <input id="inputExpAndDate" class="dropdown-item" type="checkbox" name="experiencetype" value="associate">Associate Level
+          <input id="inputExpAndDate" class="dropdown-item" type="checkbox" name="experiencetype" value="intership">Intership
+        </div>
+      </div>
+
+      <div class="btn-group">
+        <button id="filterButton" type="button" class="btn dropdown-toggle btn-light text-info"
+          data-toggle="dropdown">Date Posted</button>
+        <div class="dropdown-menu">
+          <input id="inputExpAndDate" class="dropdown-item" type="radio" name="datetype" value="hours">Past 24 Hours
+          <input id="inputExpAndDate" class="dropdown-item" type="radio" name="datetype" value="week">Past Week
+          <input id="inputExpAndDate" class="dropdown-item" type="radio" name="datetype" value="month">Past Month
+          <input id="inputExpAndDate" class="dropdown-item" type="radio" name="datetype" value="any">Any Time
+        </div>
+      </div>
+    </section>
   </div>
-  <div>
-    here goes view offer
+  <div class="row">
+    <div class="col-lg-8" style="background-color: grey; min-height: 400px">
+      <ul>
+        <li *ngFor='let job of jobs'>{{job.name}}</li>
+      </ul>
+    </div>
+    <div>
+      here goes view offer
+    </div>
   </div>
-
-
-
-
 </div>

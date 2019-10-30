@@ -6,21 +6,21 @@ import { Router, Route } from '@angular/router';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  filterKeyWord;
+  filterKeyWord:string;
   constructor(private routerService: Router) { }
 
   ngOnInit() {
 
   }
-  //TODO change name of the event method
-  onGotoJobsOffers() {
+  
+  homeToJobsOffers() {
     this.routerService.navigate(['jobOffers'], { queryParams: { keyword: this.filterKeyWord } });
     console.log(this.filterKeyWord);
   }
 
   handleKeydown(event: KeyboardEvent) {
     if(event.key === "Enter" ){
-      this.onGotoJobsOffers();
+      this.homeToJobsOffers();
     }
   }
 }

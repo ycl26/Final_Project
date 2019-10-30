@@ -23,7 +23,7 @@ export class JobOffersComponent extends AbstractForm implements OnInit {
 
   ngOnInit() {
     const keyword = this.route.snapshot.queryParams.keyword;
-    const jobs$ = this.searchJobService.getJobs(keyword);
+    const jobs$ = this.searchJobService.getJobs(keyword); //why $ after jobs
 
     jobs$.pipe(
       takeUntil(this._unsubscribe$)
@@ -34,13 +34,15 @@ export class JobOffersComponent extends AbstractForm implements OnInit {
     this.keyword = keyword;
 
   }
-  handleKeydown(event: KeyboardEvent) {
-    if(event.key === "Enter" ){
-      this.onGotoJobsOffers();
+  handleKeydown(event: KeyboardEvent) {     
+     if(event.key === "Enter" ){       
+      this.newSearch();
     }
   }
-  onGotoJobsOffers() {
-    this.routerService.navigate(['jobOffers'], { queryParams: { keyword: this.filterKeyWord } });
+  newSearch() {    
+    this.searchJobService.getJobs(this.filterKeyWord).subscribe((jobs) => {
+      this.jobs = jobs;
+    });  
     console.log(this.filterKeyWord);
   }
 

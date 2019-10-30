@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { of } from 'rxjs';
 
-const filter = (predicate, array) => {
+const filter = (predicate, array:any) => {
   let result = [];
   for (let index = 0; index < array.length; index++) {
     if (predicate(array[index])) {
@@ -23,9 +23,10 @@ export class SearchJobService {
   }
 
   getJobs(jobName: string) {
-    const byName = (job) => job.name.indexOf(jobName) > -1;
+    const byName = (job) => job.name.indexOf(jobName) > -1; //why > -1?
     // const filteredJobs = this.cacheJobs.filter(byName);
     const filteredJobs = filter(byName, this.cacheJobs);
+    console.log(filteredJobs);
     return of(filteredJobs);
   }
 
