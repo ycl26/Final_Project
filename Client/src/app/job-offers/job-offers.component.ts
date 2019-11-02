@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Route, ActivatedRoute, Router } from '@angular/router';
 import { SearchJobService } from './services/search-job.service';
 import { AbstractForm } from 'src/infra/form/abstract-form';
@@ -11,16 +11,16 @@ import { takeUntil } from 'rxjs/operators';
 })
 export class JobOffersComponent extends AbstractForm implements OnInit {
   keyword:any;
-  jobs:object;
+  @Output() jobs:object;
   filterKeyWord:any;
+  @Output() onListClick= new EventEmitter<any>();
   constructor(
     private route: ActivatedRoute,
     private searchJobService: SearchJobService,
     private routerService: Router,
   ) {
-    super();
+    super();//why super
   }
-
   ngOnInit() {
     const keyword = this.route.snapshot.queryParams.keyword;
     const jobs$ = this.searchJobService.getJobs(keyword); //why $ after jobs
@@ -45,5 +45,10 @@ export class JobOffersComponent extends AbstractForm implements OnInit {
     });  
     console.log(this.filterKeyWord);
   }
+ 
+ 
+onListDisplay(index:number){
+this.onListClick.emit(this.jobs[index]);
+}
 
 }

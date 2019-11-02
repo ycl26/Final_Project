@@ -33,11 +33,11 @@ export class SearchJobService {
   createMockJobs() {
     let i = 0;
     return [
-      { id: i++, name: 'expedia' },
-      { id: i++, name: 'cgi' },
-      { id: i++, name: 'bnp' },
-      { id: i++, name: 'bca' },
-      { id: i++, name: 'it' },
+      { id: i++, name: 'expedia', date:'20-02-19', description: 'this is the description of the job'},
+      { id: i++, name: 'cgi', date:'20-02-19', description: 'this is the description of the job' },
+      { id: i++, name: 'bnp', date:'20-02-19', description: 'this is the description of the job' },
+      { id: i++, name: 'bca', date:'20-02-19', description: 'this is the description of the job' },
+      { id: i++, name: 'it', date:'20-02-19', description: 'this is the description of the job' },
 
     ]
   }

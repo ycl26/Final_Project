@@ -1,1 +1,24 @@
-<p>job-view works!</p>
+
+<div class="container-fluid">
+    <div class="row">
+            <div class="col-lg-4" >
+                    <img id="JobCompanyLogo" class="card-img-left" src="{{job.companyLogo}}">how to do
+                </div>
+                  <div class="col-lg-8" >
+                 <div class="card">
+                  <div class="card-header bg-info text-light">
+                      <h3>{{job.name}}</h3>
+                  </div>
+                  
+                  <div class="card-body text-info">
+                      <h3 class="card-title">{{job.name}}</h3>
+                      <p class="card-text"> {{job.id}}</p>   
+                      <p class="card-text"> {{job.description}}</p>              
+                  </div>
+                  <div class="card-footer bg-info text-light">
+                      <p class="card-text">{{job.date}} <span>Apply</span></p>
+                  </div>
+              </div>
+            </div>
+    </div>
+</div>
