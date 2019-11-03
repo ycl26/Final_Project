@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {Route} from '@angular/router';
+import { Route } from '@angular/router';
 import { Company, Candidate } from '../../common/models/user-model';
 import { createDefaultCandidate } from 'src/app/common/factories/user-factory';
 
@@ -16,45 +16,45 @@ const FORGOT_PASSWORD = 'Forgot password';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
-  candidate: Candidate ;
+  candidate: Candidate;
   company: Company;
   title = 'MyCVOnline';
   activeScreen = LOGIN;
-  userTypeCand=true; 
+  userTypeCand = true;
 
   constructor() {
     console.log(this.candidate);
   }
-  
-  displaySingUp(){
+
+  displaySingUp() {
     this.candidate = createDefaultCandidate();
     this.activeScreen = SIGN_UP;
   }
-  displayLogIn(){
+  displayLogIn() {
     this.candidate = createDefaultCandidate();
     this.activeScreen = LOGIN;
   }
-  displayForgot(){
+  displayForgot() {
     this.candidate = createDefaultCandidate();
     this.activeScreen = FORGOT_PASSWORD;
   }
-  isSingUpScreenActive(){
+  isSingUpScreenActive() {
     return this.activeScreen === SIGN_UP;
   }
-  isLogInScreenActive(){
+  isLogInScreenActive() {
     return this.activeScreen === LOGIN;
   }
-  isForgotScreenActive(){
+  isForgotScreenActive() {
     return this.activeScreen === FORGOT_PASSWORD;
   }
-  setUserTypeCan(value){
-this.userTypeCand=value;
+  setUserTypeCan(value) {
+    this.userTypeCand = value;
   }
 
 
   handleSaveUser(userTypeC) {
-    userTypeC 
-    if(userTypeC) { 
+    userTypeC
+    if (userTypeC) {
       // user type is a candidate
       //this.logInService.saveUser(this.user).subscribe(() => {
       //   alert('user has been signed up');
@@ -63,7 +63,7 @@ this.userTypeCand=value;
       // (error) => {
       //   alert('error');
       // });
-    }else{
+    } else {
       //this.logInService.saveCompany(this.company).subscribe(() => {
       //   alert('company has been signed up');
       //   this.company = this.createDefaultCompany();
@@ -72,15 +72,15 @@ this.userTypeCand=value;
       //   alert('error');
       // });
 
-    } 
+    }
 
-  
+
   }
-  
 
-  handleForgotPassword(){
+
+  handleForgotPassword() {
     // this.logInService.forgotPSW(this.user.email).subscribe((response) => {
-      
+
     //   switch(response.status) {
     //     case 200 :  alert(`this is your password: ${response.body}`); break;
     //     case 204 :  alert(`user not found`); break;
@@ -90,14 +90,14 @@ this.userTypeCand=value;
   }
 
   handleLogin() {
-  //   this.logInService.login(this.user.email, this.user.psw).subscribe((response) => {
-  //     switch(response.status) {
-  //       case 200 :  alert('the user has been logged in'); break;
-  //       case 204 :  alert(`user not found`); break;
-  //       case 500 :  alert(response.body); break;
-  //     }
-     
-  //   });
+    //   this.logInService.login(this.user.email, this.user.psw).subscribe((response) => {
+    //     switch(response.status) {
+    //       case 200 :  alert('the user has been logged in'); break;
+    //       case 204 :  alert(`user not found`); break;
+    //       case 500 :  alert(response.body); break;
+    //     }
+
+    //   });
   }
 }
 
