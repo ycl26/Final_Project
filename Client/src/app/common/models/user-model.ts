@@ -7,7 +7,6 @@ export enum UserType {
 export class User {
     email: string;
     psw: string;
-    type: string;
 }
 
 export class Candidate extends User {
@@ -25,3 +24,5 @@ export class Company extends User {
 export class Guest extends User {
     type: UserType.Guest
 }
+
+export type ActiveUser = Candidate | Company | Guest;

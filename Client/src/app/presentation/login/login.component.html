@@ -2,68 +2,74 @@
     <div class="row text-lg-center text-info">
         <div class="col-lg-5" style="min-height: 90%">
             <div class="form">
-                <input id="usertype" type="radio" name="usertype" value="candidate" checked="checked"
-                    (click)="setUserTypeCan(true)">Candidate
-                <input id="usertype" type="radio" name="usertype" value="company"
-                    (click)="setUserTypeCan(false)">Company
+
                 <div>
                     <button class="btn btn-info" [ngClass]="{'active': isSingUpScreenActive()}"
-                        (click)="displaySingUp()"> Sign Up</button>
+                        (click)="displaySignUp()"> Sign Up</button>
                     <button class="btn btn-info" [ngClass]="{'active': isLogInScreenActive()}"
                         (click)="displayLogIn()">Log In</button>
                 </div>
 
+                <ng-container *ngIf="isSingUpScreenActive()">
+                    <input id="usertype" type="radio" name="usertype" value="candidate" checked="checked"
+                        (click)="setSignUpType(CANDIDATE)">Candidate
+                    <input id="usertype" type="radio" name="usertype" value="company"
+                        (click)="setSignUpType(COMPANY)">Company
 
-                <div class="tab-content" *ngIf="isSingUpScreenActive() && userTypeCand">
-                    <div id="signup">
-                        <h1>Sign Up for Free</h1>
-                        <form>
-                            <div class="top-row">
-                                <div class="field-wrap">
-                                    <input type="text" placeholder="First Name*" required autocomplete="Off"
-                                        name="firstName" [(ngModel)]='user.firstName' />
+                    <div class="tab-content" *ngIf="isSignUpType(CANDIDATE)">
+                        <div id="signup">
+                            <h1>Sign Up for Free</h1>
+                            <form>
+
+                                <div class="top-row">
+                                    <div class="field-wrap">
+                                        <input type="text" placeholder="First Name*" required autocomplete="Off"
+                                            name="firstName" [(ngModel)]='candidate.firstName' />
+                                    </div>
+                                    <div class="field-wrap">
+                                        <input type="text" placeholder="Last Name*" required autocomplete="off"
+                                            name="lastName" [(ngModel)]='candidate.lastName' />
+                                    </div>
                                 </div>
                                 <div class="field-wrap">
-                                    <input type="text" placeholder="Last Name*" required autocomplete="off"
-                                        name="lastName" [(ngModel)]='user.lastName' />
+                                    <input type="email" placeholder="Email Address*" required autocomplete="off"
+                                        name="email" [(ngModel)]='candidate.email' />
                                 </div>
-                            </div>
-                            <div class="field-wrap">
-                                <input type="email" placeholder="Email Address*" required autocomplete="off"
-                                    name="email" [(ngModel)]='user.email' />
-                            </div>
-                            <div class="field-wrap">
-                                <input type="password" placeholder="Set A Password*" required autocomplete="off"
-                                    name="psw" [(ngModel)]='user.psw' />
-                            </div>
-                            <button type="submit" class="btn btn-info" (click)="handleSaveUser(userTypeCand)">Get
-                                Started</button>
-                        </form>
+                                <div class="field-wrap">
+                                    <input type="password" placeholder="Set A Password*" required autocomplete="off"
+                                        name="psw" [(ngModel)]='candidate.psw' />
+                                </div>
+                                <button type="submit" class="btn btn-info" (click)="handleSignUpUser(candidate)">Get
+                                    Started</button>
+                            </form>
+                        </div>
                     </div>
-                </div>
-                <div class="tab-content" *ngIf="isSingUpScreenActive() && !userTypeCand">
-                    <div id="signup">
-                        <h1>Sign Up for Free</h1>
-                        <form>
-                            <div class="top-row">
-                                <div class="field-wrap">
-                                    <input type="text" placeholder="Company Name*" required autocomplete="off"
-                                        name="Company Name" [(ngModel)]='company.companyName' />
+                    <div class="tab-content" *ngIf=" isSignUpType(COMPANY)">
+                        <div id="signup">
+                            <h1>Sign Up for Free</h1>
+                            <form>
+                                <div class="top-row">
+                                    <div class="field-wrap">
+                                        <input type="text" placeholder="Company Name*" required autocomplete="off"
+                                            name="Company Name" [(ngModel)]='company.companyName' />
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="field-wrap">
-                                <input type="email" placeholder="Email Address*" required autocomplete="off"
-                                    name="email" [(ngModel)]='company.email' />
-                            </div>
-                            <div class="field-wrap">
-                                <input type="password" placeholder="Set A Password*" required autocomplete="off"
-                                    name="psw" [(ngModel)]='company.psw' />
-                            </div>
-                            <button type="submit" class="btn btn-info" (click)="handleSaveUser(userTypeCand)">Get
-                                Started</button>
-                        </form>
+                                <div class="field-wrap">
+                                    <input type="email" placeholder="Email Address*" required autocomplete="off"
+                                        name="email" [(ngModel)]='company.email' />
+                                </div>
+                                <div class="field-wrap">
+                                    <input type="password" placeholder="Set A Password*" required autocomplete="off"
+                                        name="psw" [(ngModel)]='company.psw' />
+                                </div>
+                                <button type="submit" class="btn btn-info" (click)="handleSignUpUser(company)">Get
+                                    Started</button>
+                            </form>
+                        </div>
                     </div>
-                </div>
+                </ng-container>
+
+
 
                 <div class="tab-content" *ngIf="isLogInScreenActive()">
                     <div id="login">
@@ -94,7 +100,7 @@
                             <input name="email" class="field-wrap" type="text" value="Your e-mail address"
                                 onfocus="this.value = '';"
                                 onblur="if (this.value == '') {this.value = 'Your e-mail address';}"
-                                [(ngModel)]='user.email'>
+                                [(ngModel)]='candidate.email'>
                             <button class="button button-block text-light bg-info"
                                 (click)="handleForgotPassword()">Reset my
                                 Password</button>
@@ -104,8 +110,8 @@
                 </div>
             </div>
         </div>
-        <div class="col-lg-7" >
-                <img id="Img2" src="../assets/img/Img2.jpg" alt="Login Image">
+        <div class="col-lg-7">
+            <img id="Img2" src="../assets/img/Img2.jpg" alt="Login Image">
         </div>
     </div>
 

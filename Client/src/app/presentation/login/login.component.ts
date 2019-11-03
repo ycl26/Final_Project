@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Route } from '@angular/router';
-import { Company, Candidate } from '../../common/models/user-model';
-import { createDefaultCandidate } from 'src/app/common/factories/user-factory';
+import { Route, Router } from '@angular/router';
+import { Company, Candidate, UserType, User } from '../../common/models/user-model';
+import { createDefaultCandidate, createDefaultCompany, createDefaultUser } from 'src/app/common/factories/user-factory';
+import { UserService, Error } from 'src/app/common/services/user.service';
 
 
 
@@ -15,68 +16,80 @@ const FORGOT_PASSWORD = 'Forgot password';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit {
+  readonly CANDIDATE = UserType.Candidate;
+  readonly COMPANY = UserType.Company;
+
   candidate: Candidate;
   company: Company;
-  title = 'MyCVOnline';
-  activeScreen = LOGIN;
-  userTypeCand = true;
+  user: User;
+  errorMessage: string;
 
-  constructor() {
-    console.log(this.candidate);
+  title = 'MyCVOnline';
+  activeScreen;
+  signUpType: UserType;
+
+  constructor(
+    private userService: UserService,
+    private routerService: Router
+  ) {
+    
   }
 
-  displaySingUp() {
+  ngOnInit() {
+    this.displayLogIn();
+  }
+
+
+  //#region Sign Up
+  displaySignUp() {
     this.candidate = createDefaultCandidate();
+    this.company = createDefaultCompany();
     this.activeScreen = SIGN_UP;
+    this.signUpType = this.CANDIDATE;
   }
   displayLogIn() {
-    this.candidate = createDefaultCandidate();
+    this.user = createDefaultUser();
     this.activeScreen = LOGIN;
   }
   displayForgot() {
-    this.candidate = createDefaultCandidate();
+    this.user = createDefaultUser();
     this.activeScreen = FORGOT_PASSWORD;
   }
   isSingUpScreenActive() {
     return this.activeScreen === SIGN_UP;
   }
+  setSignUpType(value) {
+    this.signUpType = value;
+  }
+  isSignUpType(type) {
+    return this.signUpType === type;
+  }
+  handleSignUpUser(candidateOrCompany: Candidate | Company) {
+    this.userService.signup(candidateOrCompany).subscribe((userOrError: Candidate | Company | Error) => {
+      switch (userOrError.type) {
+        case UserType.Candidate:
+          this.routerService.navigate(['jobOffers']); break;
+        case UserType.Company:
+          this.routerService.navigate(['listOfcandidates']); break;
+        default:
+          this.errorMessage = userOrError.errorMessage;
+      }
+    });
+  }
+  //#endregion
+
+  //#region Log In
   isLogInScreenActive() {
     return this.activeScreen === LOGIN;
   }
+  //#endregion
+
+  //#region forgot passwrod
   isForgotScreenActive() {
     return this.activeScreen === FORGOT_PASSWORD;
   }
-  setUserTypeCan(value) {
-    this.userTypeCand = value;
-  }
-
-
-  handleSaveUser(userTypeC) {
-    userTypeC
-    if (userTypeC) {
-      // user type is a candidate
-      //this.logInService.saveUser(this.user).subscribe(() => {
-      //   alert('user has been signed up');
-      //   this.user = this.createDefaultUser();
-      // }, 
-      // (error) => {
-      //   alert('error');
-      // });
-    } else {
-      //this.logInService.saveCompany(this.company).subscribe(() => {
-      //   alert('company has been signed up');
-      //   this.company = this.createDefaultCompany();
-      // }, 
-      // (error) => {
-      //   alert('error');
-      // });
-
-    }
-
-
-  }
-
+  //#endregion
 
   handleForgotPassword() {
     // this.logInService.forgotPSW(this.user.email).subscribe((response) => {

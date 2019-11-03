@@ -7,7 +7,9 @@ import { Router, Route } from '@angular/router';
 })
 export class HomeComponent implements OnInit {
   filterKeyWord:string;
-  constructor(private routerService: Router) { }
+  constructor(
+    private routerService: Router
+  ) { }
 
   ngOnInit() {
 

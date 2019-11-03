@@ -1,9 +1,14 @@
-import { UserType, Guest, Candidate, Company } from "../models/user-model";
+import { UserType, Guest, Candidate, Company, User } from "../models/user-model";
 
 export const createDefaultGuest = () => {
   return {
     type: UserType.Guest
   } as Guest;
+}
+
+export const createDefaultUser = () => {
+  return {
+  } as User;
 }
 
 export const createDefaultCandidate = (): Candidate => {
