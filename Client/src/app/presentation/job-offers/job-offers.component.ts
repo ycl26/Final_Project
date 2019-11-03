@@ -3,7 +3,7 @@ import { Route, ActivatedRoute, Router } from '@angular/router';
 import { SearchJobService } from './services/search-job.service';
 import { AbstractForm } from 'src/infra/form/abstract-form';
 import { takeUntil } from 'rxjs/operators';
-import { Ijob } from '../job-model';
+import {  Job } from 'src/app/common/models/job-model';
 
 @Component({
   selector: 'app-job-offers',
@@ -13,8 +13,8 @@ import { Ijob } from '../job-model';
 export class JobOffersComponent extends AbstractForm implements OnInit {
   keyword:any; 
   filterKeyWord:any;
-  jobItemToView:Ijob;
-  @Output() jobs:Ijob[]; 
+  jobItemToView:Job;
+  @Output() jobs:Job[]; 
  
   constructor(
     private route: ActivatedRoute,

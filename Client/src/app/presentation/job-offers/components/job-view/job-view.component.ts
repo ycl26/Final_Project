@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { SearchJobService } from '../../services/search-job.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Ijob } from 'src/app/job-model';
+import { Job } from 'src/app/common/models/job-model';
 
 
 @Component({
@@ -10,7 +10,7 @@ import { Ijob } from 'src/app/job-model';
   styleUrls: ['./job-view.component.css']
 })
 export class JobViewComponent implements OnInit {
-  @Input() job: Ijob;
+  @Input() job: Job;
   constructor(
     private route: ActivatedRoute,
     private searchJobService: SearchJobService,

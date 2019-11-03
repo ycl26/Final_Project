@@ -1,4 +1,4 @@
-export interface Ijob{
+export class Job{
     id:number;
     name:string;
     date:Date;

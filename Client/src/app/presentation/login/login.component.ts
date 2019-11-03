@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Route} from '@angular/router';
-import { Company, Candidate } from './loginModel';
+import { Company, Candidate } from '../../common/models/user-model';
+import { createDefaultCandidate } from 'src/app/common/factories/user-factory';
 
 
 
@@ -15,41 +16,26 @@ const FORGOT_PASSWORD = 'Forgot password';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
-  user: Candidate = this.createDefaultUser();
-  company: Company= this.createDefaultCompany();
+  candidate: Candidate ;
+  company: Company;
   title = 'MyCVOnline';
   activeScreen = LOGIN;
   userTypeCand=true; 
-  
 
   constructor() {
-    console.log(this.user);
+    console.log(this.candidate);
   }
-  createDefaultUser(): Candidate {
-    return {
-      email: '',
-      firstName: '',
-      lastName: '',
-      psw: ''
-    }
-  }
-  createDefaultCompany(): Company {
-    return {
-      email: '',
-      companyName: '',     
-      psw: ''
-    }
-  }
+  
   displaySingUp(){
-    this.user = this.createDefaultUser();
+    this.candidate = createDefaultCandidate();
     this.activeScreen = SIGN_UP;
   }
   displayLogIn(){
-    this.user = this.createDefaultUser();
+    this.candidate = createDefaultCandidate();
     this.activeScreen = LOGIN;
   }
   displayForgot(){
-    this.user = this.createDefaultUser();
+    this.candidate = createDefaultCandidate();
     this.activeScreen = FORGOT_PASSWORD;
   }
   isSingUpScreenActive(){

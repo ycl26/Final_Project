@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, Output } from '@angular/core';
-import { Ijob } from '../../../job-model'
+import { Job } from 'src/app/common/models/job-model';
+
 
 @Component({
   selector: 'app-job-item',
@@ -8,7 +9,7 @@ import { Ijob } from '../../../job-model'
 })
 export class JobItemComponent implements OnInit {
 
-  @Output() @Input() job: Ijob;
+  @Output() @Input() job: Job;
 
   constructor() { }
   

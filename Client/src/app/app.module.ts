@@ -5,15 +5,16 @@ import { FormsModule } from '@angular/forms';
 
 
 import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { LoginComponent } from './login/login.component';
-import { AboutUsComponent } from './about-us/about-us.component';
+import { AppComponent } from './presentation/app.component';
+import { LoginComponent } from './presentation/login/login.component';
+import { AboutUsComponent } from './presentation/about-us/about-us.component';
 import { from } from 'rxjs';
-import { JobOffersComponent } from './job-offers/job-offers.component';
-import { HomeComponent } from './home/home.component';
-import { JobViewComponent } from './job-offers/components/job-view/job-view.component';
-import { JobListComponent } from './job-offers/components/job-list/job-list.component';
-import { JobItemComponent } from './job-offers/components/job-item/job-item.component';
+import { JobOffersComponent } from './presentation/job-offers/job-offers.component';
+import { HomeComponent } from './presentation/home/home.component';
+import { JobViewComponent } from './presentation/job-offers/components/job-view/job-view.component';
+import { JobListComponent } from './presentation/job-offers/components/job-list/job-list.component';
+import { JobItemComponent } from './presentation/job-offers/components/job-item/job-item.component';
+
 
 @NgModule({
   declarations: [
