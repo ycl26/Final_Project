@@ -21,11 +21,11 @@ export class JobOffersComponent extends AbstractForm implements OnInit {
     private searchJobService: SearchJobService,
     private routerService: Router,
   ) {
-    super();//why super
+    super();
   }
   ngOnInit() {
     const keyword = this.route.snapshot.queryParams.keyword;
-    const jobs$ = this.searchJobService.getJobs(keyword); //why $ after jobs
+    const jobs$ = this.searchJobService.getJobs(keyword);
     
 
     jobs$.pipe(

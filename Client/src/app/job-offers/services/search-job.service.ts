@@ -19,11 +19,11 @@ export class SearchJobService {
   cacheJobs: any[];
 
   constructor() {
-    this.cacheJobs = this.createMockJobs();
+    this.cacheJobs = this._createMockJobs();
   }
 
   getJobs(jobName: string) {
-    const byName = (job) => job.name.indexOf(jobName) > -1; //why > -1?
+    const byName = (job) => job.name.indexOf(jobName) > -1; 
     // const filteredJobs = this.cacheJobs.filter(byName);
     let filteredJobs = [];
     if (jobName == undefined) {
@@ -36,7 +36,7 @@ export class SearchJobService {
     return of(filteredJobs);
   }
 
-  createMockJobs() {
+  _createMockJobs() {
     let i = 0;
     return [
       { id: i++, name: 'expedia', date: '20-02-19', description: 'this is the description of the job',companyLogo:'../assets/img/logo.png' },
