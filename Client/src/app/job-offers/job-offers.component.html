@@ -47,11 +47,11 @@
   </div>
   <div class="row">
     <div class="col-lg-5">
-      <app-job-list [jobs]="jobs"></app-job-list>
+      <app-job-list (onJobItemClick)='recievedOnJobItemClick($event)' [jobs]="jobs"></app-job-list>
     </div>
     <div class="col-lg-5">
         here goes job view
-      <app-job-view  [job]=jobs[0]></app-job-view>
+      <app-job-view  [job]="jobItemToView"></app-job-view>
     </div>
   </div>
 </div>

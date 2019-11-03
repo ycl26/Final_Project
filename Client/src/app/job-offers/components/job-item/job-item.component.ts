@@ -1,4 +1,5 @@
-import { Component, OnInit, Input,Output } from '@angular/core';
+import { Component, OnInit, Input, Output } from '@angular/core';
+import { Ijob } from '../../../job-model'
 
 @Component({
   selector: 'app-job-item',
@@ -6,12 +7,13 @@ import { Component, OnInit, Input,Output } from '@angular/core';
   styleUrls: ['./job-item.component.css']
 })
 export class JobItemComponent implements OnInit {
-  
-  @Output() @Input() job: object={ id:1, name: 'expedia', date:'20-02-19', description: 'this is the description of the job'};
- 
-  constructor() { }
 
+  @Output() @Input() job: Ijob;
+
+  constructor() { }
+  
   ngOnInit() {
   }
+  
 
 }

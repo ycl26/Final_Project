@@ -1,3 +1,5 @@
 <ul>
-    <app-job-item *ngFor="let job of jobs" [job]="job"></app-job-item>
+    <li *ngFor="let job of jobs" (click)="onJobViewDisplay(job)">
+        <app-job-item [job]="job"></app-job-item>
+    </li>
 </ul>

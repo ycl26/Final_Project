@@ -3,6 +3,7 @@ import { Route, ActivatedRoute, Router } from '@angular/router';
 import { SearchJobService } from './services/search-job.service';
 import { AbstractForm } from 'src/infra/form/abstract-form';
 import { takeUntil } from 'rxjs/operators';
+import { Ijob } from '../job-model';
 
 @Component({
   selector: 'app-job-offers',
@@ -10,10 +11,11 @@ import { takeUntil } from 'rxjs/operators';
   styleUrls: ['./job-offers.component.css']
 })
 export class JobOffersComponent extends AbstractForm implements OnInit {
-  keyword:any;
-  @Output() jobs:object;
+  keyword:any; 
   filterKeyWord:any;
-  @Output() onListClick= new EventEmitter<any>();
+  jobItemToView:Ijob;
+  @Output() jobs:Ijob[]; 
+ 
   constructor(
     private route: ActivatedRoute,
     private searchJobService: SearchJobService,
@@ -24,11 +26,13 @@ export class JobOffersComponent extends AbstractForm implements OnInit {
   ngOnInit() {
     const keyword = this.route.snapshot.queryParams.keyword;
     const jobs$ = this.searchJobService.getJobs(keyword); //why $ after jobs
+    
 
     jobs$.pipe(
       takeUntil(this._unsubscribe$)
     ).subscribe((jobs) => {
       this.jobs = jobs;
+      this.jobItemToView=this.jobs[0];
     });
 
     this.keyword = keyword;
@@ -44,11 +48,11 @@ export class JobOffersComponent extends AbstractForm implements OnInit {
       this.jobs = jobs;
     });  
     console.log(this.filterKeyWord);
-  }
+  } 
  
- 
-onListDisplay(index:number){
-this.onListClick.emit(this.jobs[index]);
+
+recievedOnJobItemClick($event){
+this.jobItemToView=$event;
 }
 
 }

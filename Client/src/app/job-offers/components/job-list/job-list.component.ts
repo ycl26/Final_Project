@@ -1,4 +1,5 @@
-import { Component, OnInit, Input} from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
+import { Ijob } from 'src/app/job-model';
 
 @Component({
   selector: 'app-job-list',
@@ -6,10 +7,13 @@ import { Component, OnInit, Input} from '@angular/core';
   styleUrls: ['./job-list.component.css']
 })
 export class JobListComponent implements OnInit {
-  @Input() jobs: object;
+  @Input() jobs:Ijob[];
+  @Output() onJobItemClick= new EventEmitter<any>();
   constructor() { }
 
   ngOnInit() {
   }
-
+  onJobViewDisplay(selectedJobItem){
+    this.onJobItemClick.emit(selectedJobItem);
+  }
 }
