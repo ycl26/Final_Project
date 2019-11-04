@@ -103,14 +103,16 @@ export class LoginComponent implements OnInit {
   }
 
   handleLogin() {
-    //   this.logInService.login(this.user.email, this.user.psw).subscribe((response) => {
-    //     switch(response.status) {
-    //       case 200 :  alert('the user has been logged in'); break;
-    //       case 204 :  alert(`user not found`); break;
-    //       case 500 :  alert(response.body); break;
-    //     }
-
-    //   });
+      this.userService.login(this.user.email, this.user.psw).subscribe((userOrError) => {
+        switch (userOrError.type) {
+          case UserType.Candidate:
+            this.routerService.navigate(['jobOffers']); break;
+          case UserType.Company:
+            this.routerService.navigate(['listOfcandidates']); break;
+          default:
+            this.errorMessage = userOrError.errorMessage;
+        }
+      });
   }
 }
 

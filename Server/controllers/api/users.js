@@ -31,12 +31,27 @@ function doUserLogin(req, res) {
     var email = req.body.email;
     var psw = req.body.psw;
     var query = { userEmail: email, password: psw };
-    tryToFindInCompanies(query).then((data) => {
-        res.status(200).send({ data: data }); // Return all the data from DB
+    tryToFindInCompanies(query).then((company) => {
+        const data = {
+            companyName: company.companyName,
+            email: company.userEmail,
+            type: COMPANY,
+        };
+        res.send({
+            data: data
+        });
     }, (error) => {
         return tryToFindInCandidates(query);
-    }).then((data) => {
-        res.status(200).send({ data: data }); // Return all the data from DB
+    }).then((candidate) => {
+        const data = {
+            firstName: candidate.firstName,
+            lastName: candidate.lastName,
+            email: candidate.userEmail,
+            type: CANDIDATE,
+        };
+        res.send({
+            data: data
+        });
     }, (error) => {
         res.status(204).send({ errorMessage: error });
     });
