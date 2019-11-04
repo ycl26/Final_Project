@@ -39,7 +39,7 @@ var usersController = require('./controllers/api/users');
 
 // Get all listings available to buy.
 router.post('/api/login',usersController.onUserLogin); // End point is 'http/localhost:3000/api/buy'
-router.post('/api/signuCandidate', usersController.onCandidateSignUp);
+router.post('/api/signupCandidate', usersController.onCandidateSignUp);
 router.post('/api/signupCompany', usersController.onCompanySignUp);
 router.post('/api/forgotPSW', usersController.onForgotPassword);
 // Register the routing

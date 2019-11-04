@@ -11,10 +11,10 @@ const apiUrl = 'http://localhost:3000/api';
 type URL = string;
 
 const handleResponse = (response: HttpResponse<Object>) => {
-  if (response.status === 201) {
+  if (response.status === 200) {
     return response.body && (<any>response.body).data as any
   }
-  if (response.status === 400) {
+  if (response.status === 500) {
     return {
       type: 'Error',
       errorMessage: response.body && (<any>response.body).errorMessage
@@ -35,12 +35,20 @@ export class Error {
   providedIn: 'root'
 })
 export class UserService {
-  _user = createDefaultGuest();
+  _user$ = new BehaviorSubject(createDefaultGuest());
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient) {
+    // TODO check bind
+    this._updateActiveUser = this._updateActiveUser.bind(this);
+  }
 
-  getActiveUser(): ActiveUser {
-    return this._user;
+  getActiveUser(): Observable<ActiveUser> {
+    return this._user$.asObservable();
+  }
+
+  _updateActiveUser(candidateOrCompany: Candidate | Company) {
+    this._user$.next(<any>candidateOrCompany);
+    return candidateOrCompany;
   }
 
   signup(candidateOrCompany: Candidate | Company): Observable<Candidate | Company | Error> {
@@ -52,13 +60,15 @@ export class UserService {
     const result$ = this.httpClient.post(url, candidateOrCompany, { observe: 'response' });
     return result$.pipe(
       map(handleResponse),
+      map(this._updateActiveUser)
     );
   }
 
   login(email: string, psw: string): Observable<Candidate | Company | Error> {
     const result$ = this.httpClient.post(`${apiUrl}/login`, { email, psw }, { observe: 'response' });
     return result$.pipe(
-      map(handleResponse)
+      map(handleResponse),
+      map(this._updateActiveUser)
     )
   }
 

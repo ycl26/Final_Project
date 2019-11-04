@@ -1,8 +1,12 @@
 
 "use strict";
 
-var companies = require('../../models/company'); // Model object
-var candidates = require('../../models/candidate'); // Model object
+const companies = require('../../models/company'); // Model object
+const candidates = require('../../models/candidate'); // Model object
+
+const COMPANY = 'Company';
+const CANDIDATE = 'Candidate';
+const GUEST = 'Guest';
 
 function _findUser(collection, query) {
     return new Promise(function (resolve, reject) {
@@ -35,7 +39,7 @@ function doUserLogin(req, res) {
         res.status(200).send({ data: data }); // Return all the data from DB
     }, (error) => {
         res.status(204).send({ errorMessage: error });
-    });   
+    });
 }
 
 function doForgotPassword(req, res) {
@@ -46,8 +50,8 @@ function doForgotPassword(req, res) {
         res.status(200).send({ data: data }); // Return all the data from DB
     }, (error) => {
         return tryToFindInCandidates(query);
-    }).then((data) => {
-        res.status(200).send({ psw: user.password });// Return all the data from DB
+    }).then((user) => {
+        res.status(200).send({ data: user.password });// Return all the data from DB
     }, (error) => {
         res.status(204).send({ errorMessage: error });
     });
@@ -61,34 +65,44 @@ function doCompanySignUp(req, res, next) {
         password: req.body.psw,
     });
 
-    company.save(function (err, data) {
-        console.log(data);
+    company.save(function (err, createdCompany) {
         if (err) {
-            console.log(err);
-            res.status(500).send({ message: "Some error ocuured while creating the Note." });
+            res.status(500).send({ message: "Some error ocuured while creating the company." });
         } else {
-            res.send(data);
-            console.log(data);
+            // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax
+            const data = {
+                companyName: createdCompany.companyName,
+                email: createdCompany.userEmail,
+                type: COMPANY,
+            };
+            res.send({
+                data: data
+            });
         }
     });
 }
 
 function doCandidateSignUp(req, res, next) {
-    console.log("doCandidateSignUp");
     var candidate = new candidates({
         firstName: req.body.firstName,
         lastName: req.body.lastName,
         userEmail: req.body.email,
         password: req.body.psw,
     });
-    candidate.save(function (err, data) {
-        console.log(data);
+    candidate.save(function (err, createdCandidate) {
         if (err) {
-            console.log(err);
-            res.status(500).send({ message: "Some error ocuured while creating the Note." });
+            res.status(500).send({ message: "Some error ocuured while creating the candidate." });
         } else {
-            res.send(data);
-            console.log(data);
+            // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax
+            const data = {
+                firstName: createdCandidate.firstName,
+                lastName: createdCandidate.lastName,
+                email: createdCandidate.userEmail,
+                type: CANDIDATE,
+            };
+            res.send({
+                data: data
+            });
         }
     });
 }

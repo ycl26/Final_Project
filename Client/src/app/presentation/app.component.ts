@@ -1,20 +1,33 @@
 import { Component } from '@angular/core';
 import { UserService } from '../common/services/user.service';
 import { User, UserType, ActiveUser } from '../common/models/user-model';
+import { Observable } from 'rxjs';
+import { AbstractForm } from 'src/infra/form/abstract-form';
+import { takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent extends AbstractForm {
+
   title = 'Client';
-  user: ActiveUser;
+  activeUser: ActiveUser;
   constructor(private userService: UserService) {
-    this.user = this.userService.getActiveUser();
+    super();
+    this._initialize();
+  }
+
+  _initialize() {
+    this.userService.getActiveUser().pipe(
+      takeUntil(this._unsubscribe$),
+    ).subscribe((user) => {
+      this.activeUser = user;
+    });
   }
 
   isGuest() {
-    return this.user.type === UserType.Guest;
+    return this.activeUser.type === UserType.Guest;
   }
 }
