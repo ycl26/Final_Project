@@ -16,11 +16,11 @@ app.use(function (req, res, next) {
 });
 
 //DB Connectivity 
-mongoose.connect('mongodb://localhost:27017/Assignment3');
+mongoose.connect('mongodb://localhost:27017/FinalProject');
 
 	var db = mongoose.connection;
 	db.on('error', console.error); // Log the error to the console when there is an error in connectivity?
-	db.once('open', startServer); // Start the server on port '3000' upon successfull connectivity
+	db.once('open', startServer); // Start the server on port '30nal00' upon successfull connectivity
 	
 	
 	// Start up the server
@@ -39,7 +39,8 @@ var usersController = require('./controllers/api/users');
 
 // Get all listings available to buy.
 router.post('/api/login',usersController.onUserLogin); // End point is 'http/localhost:3000/api/buy'
-router.post('/api/signup', usersController.onUserSignUp);
+router.post('/api/signuCandidate', usersController.onCandidateSignUp);
+router.post('/api/signupCompany', usersController.onCompanySignUp);
 router.post('/api/forgotPSW', usersController.onForgotPassword);
 // Register the routing
 app.use('/', router);

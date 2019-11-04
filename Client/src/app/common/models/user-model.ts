@@ -18,7 +18,6 @@ export class Candidate extends User {
 export class Company extends User {
     companyName: string;
     type: UserType.Company
-
 }
 
 export class Guest extends User {
