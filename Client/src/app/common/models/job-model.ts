@@ -3,6 +3,7 @@ export class Job{
     name:string;
     date:Date;
     description:string;
+    type:string
     companyLogo:string;
 
 }

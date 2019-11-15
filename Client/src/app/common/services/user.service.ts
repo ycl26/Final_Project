@@ -13,6 +13,7 @@ type URL = string;
 const handleResponse = (response: HttpResponse<Object>) => {
   if (response.status === 200) {
     return response.body && (<any>response.body).data as any
+    console.log('here')
   }
   if (response.status === 500) {
     return {

@@ -1,5 +1,7 @@
+<div class="container-fluid">
 <ul>
     <li *ngFor="let job of jobs" (click)="onJobViewDisplay(job)">
         <app-job-item [job]="job"></app-job-item>
     </li>
 </ul>
+</div>
