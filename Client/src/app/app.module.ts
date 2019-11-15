@@ -14,6 +14,7 @@ import { HomeComponent } from './presentation/home/home.component';
 import { JobViewComponent } from './presentation/job-offers/components/job-view/job-view.component';
 import { JobListComponent } from './presentation/job-offers/components/job-list/job-list.component';
 import { JobItemComponent } from './presentation/job-offers/components/job-item/job-item.component';
+import { CandidateProfileComponent } from './presentation/candidate-profile/candidate-profile.component';
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import { JobItemComponent } from './presentation/job-offers/components/job-item/
     HomeComponent,
     JobViewComponent,
     JobListComponent,
-    JobItemComponent
+    JobItemComponent,
+    CandidateProfileComponent
   ],
   imports: [
     BrowserModule,
