@@ -1,0 +1,5 @@
+<ul >
+    <li *ngFor="let cv of listCV" (click)="onCVViewDisplay(cv)">
+        <app-cv-item [cv]="cv"></app-cv-item>
+    </li>
+</ul>

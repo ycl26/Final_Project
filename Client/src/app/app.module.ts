@@ -15,6 +15,10 @@ import { JobViewComponent } from './presentation/job-offers/components/job-view/
 import { JobListComponent } from './presentation/job-offers/components/job-list/job-list.component';
 import { JobItemComponent } from './presentation/job-offers/components/job-item/job-item.component';
 import { CandidateProfileComponent } from './presentation/candidate-profile/candidate-profile.component';
+import { CvListComponent } from './presentation/candidate-profile/components/cv-list/cv-list.component';
+import { CvItemComponent } from './presentation/candidate-profile/components/cv-item/cv-item.component';
+import { CvViewComponent } from './presentation/candidate-profile/components/cv-view/cv-view.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 @NgModule({
@@ -27,13 +31,17 @@ import { CandidateProfileComponent } from './presentation/candidate-profile/cand
     JobViewComponent,
     JobListComponent,
     JobItemComponent,
-    CandidateProfileComponent
+    CandidateProfileComponent,
+    CvListComponent,
+    CvItemComponent,
+    CvViewComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
-    FormsModule ,
+    FormsModule,
+    BrowserAnimationsModule ,
          
   ],
   providers: [],

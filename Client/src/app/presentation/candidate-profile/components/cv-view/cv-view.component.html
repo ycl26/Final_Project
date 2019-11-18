@@ -1,0 +1,56 @@
+<div class="container-fluid">
+    <div class="row">
+
+        <div class="col-lg">
+
+            <div class="card-body">
+                <ul id="Wexp" class="list-group list-group-flush">
+                    <li class="list-group-item">
+                        <h1 class="section">{{cv.title}}</h1>
+                        <button (click)="onEditClick()" *ngIf="!editMode" >Edit</button>
+                        <button (click)="onSaveClick()" *ngIf="editMode" >Save</button>
+                        <button (click)="onCancelClick()" *ngIf="editMode" >Cancel</button>
+                    </li>
+                </ul>
+            </div>
+            <div class="card-body">
+                <ul id="Wexp" class="list-group list-group-flush">
+                    <li class="list-group-item">
+                        <h2 class="section"><i class="fas fa-user-tie"></i> Profile</h2>
+                        
+                    </li>
+                    <li class="list-group-item">
+                        <textarea *ngIf="editMode" class="card-text">{{cv.profile}}</textarea>
+                        <p *ngIf="!editMode" class="card-text">{{cv.profile}}</p>
+                    </li>
+                </ul>
+            </div>
+            <div class="card-body">
+                <ul id="Wexp" class="list-group list-group-flush">
+                    <li class="list-group-item">
+                        <h2 class="section"><i class="fas fa-suitcase"></i> Work Experience</h2>
+                    </li>
+                    <li class="list-group-item">
+                        <textarea  *ngIf="editMode" class="card-text">{{cv.workExp}}</textarea>
+                        <p *ngIf="!editMode" class="card-text">{{cv.workExp}}</p>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="card-body">
+                <ul id="edu" class="list-group list-group-flush">
+                    <li class="list-group-item">
+                        <h2 class="section"><i class="fas fa-graduation-cap"></i> Education</h2>
+                    </li>
+                    <li class="list-group-item">
+                        <textarea *ngIf="editMode" class="card-text">{{cv.education}}</textarea>
+                        <p *ngIf="!editMode" class="card-text">{{cv.education}}</p>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

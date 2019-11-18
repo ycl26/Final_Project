@@ -2,73 +2,22 @@
     <div class="row">
         <div class="col-lg-3">
             <div class="card">
-                <img src="avatar.png" class=" card-img-top img-responsive">
+                <img src="./assets/img/avatar.png" class=" card-img-top img-responsive">
 
                 <div class="card-body">
                     <ul id="home" class="list-group list-group-flush">
                         <li class="list-group-item">
 
-                            <p class="card-text"><i class="fas fa-envelope"></i>{{candidate.firstName}}</p>
+                            <p class="card-text"><i></i>first name</p>
 
-                            <p class="card-text"><i class="fas fa-envelope"></i>{{candidate.lastName}}</p>
+                            <p class="card-text"><i></i>last name</p>
 
-                            <p class="card-text "><i class="fas fa-laptop"></i>{{candidate.profession}}</p>
+                            <p class="card-text"><i class="fas fa-envelope"></i> email</p>
 
-                            <p class="card-text"><i class="fas fa-home"></i> {{candidate.address}}</p>
-
-                            <p class="card-text"><i class="fas fa-envelope"></i>{{candidate.email}}</p>
-
-                            <p class="card-text"><i class="material-icons">phone</i> {{candidate.phone}}</p>
                         </li>
                         <li class="list-group-item">
-                            <h5 class="title"><i class="fas fa-image"></i> About Me</h5>
-                            <p class="card-text">Bacon ipsum dolor amet spare ribs ball tip salami, tri-tip sirloin
-                                pastrami jowl jerky capicola buffalo filet mignon. Chuck frankfurter sausage tail
-                                buffalo sirloin rump prosciutto. </p>
-                        </li>
-                        <li class="list-group-item">
-                            <h5 class="card-text"><i class="fas fa-star"></i> Skills</h5>
-                            <p>HTML &amp; CSS</p>
-                            <div class="progress">
-                                <div class="progress-bar bg-info" role="progressbar" style="width: 100%"
-                                    aria-valuenow="100" aria-valuemin="0" aria-valuemax="100%">100%</div>
-                            </div>
-
-                            <p>Java Script</p>
-                            <div class="progress">
-                                <div class="progress-bar bg-info" role="progressbar" style="width: 90%"
-                                    aria-valuenow="90" aria-valuemin="0" aria-valuemax="100%">90%</div>
-                            </div>
-
-                            <p>Java</p>
-                            <div class="progress">
-                                <div class="progress-bar bg-info" role="progressbar" style="width: 50%"
-                                    aria-valuenow="50" aria-valuemin="0" aria-valuemax="100%">50%</div>
-                            </div>
-
-                            <p>Bootstrap</p>
-                            <div class="progress">
-                                <div class="progress-bar bg-info" role="progressbar" style="width: 70%"
-                                    aria-valuenow="70" aria-valuemin="0" aria-valuemax="100%">70%</div>
-                            </div>
-
-                            <p>Angular JS</p>
-                            <div class="progress">
-                                <div class="progress-bar bg-info" role="progressbar" style="width: 60%"
-                                    aria-valuenow="60" aria-valuemin="0" aria-valuemax="100%">60%</div>
-                            </div>
-
-                            <p>PHP</p>
-                            <div class="progress">
-                                <div class="progress-bar bg-info" role="progressbar" style="width: 65%"
-                                    aria-valuenow="65" aria-valuemin="0" aria-valuemax="100%">65%</div>
-                            </div>
-
-                            <p>MySQL</p>
-                            <div class="progress">
-                                <div class="progress-bar bg-info" role="progressbar" style="width: 80%"
-                                    aria-valuenow="80" aria-valuemin="0" aria-valuemax="100%">80%</div>
-                            </div>
+                            <app-cv-list (onCVItemClick)='recievedOnCVItemClick($event)' [listCV]="listCV">
+                            </app-cv-list>
                         </li>
                         <li class="list-group-item">
                             <h5 class="card-text"><i class="fas fa-globe"></i> Languages</h5>
@@ -93,9 +42,12 @@
                         </li>
 
                     </ul>
-
                 </div>
+
             </div>
+        </div>
+        <div class="col-lg-9">
+            <app-cv-view [cv]='CVItemToView'></app-cv-view>
         </div>
     </div>
 </div>
