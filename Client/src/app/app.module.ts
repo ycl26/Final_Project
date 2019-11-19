@@ -19,6 +19,7 @@ import { CvListComponent } from './presentation/candidate-profile/components/cv-
 import { CvItemComponent } from './presentation/candidate-profile/components/cv-item/cv-item.component';
 import { CvViewComponent } from './presentation/candidate-profile/components/cv-view/cv-view.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CompanyProfileComponent } from './presentation/company-profile/company-profile.component';
 
 
 @NgModule({
@@ -34,7 +35,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     CandidateProfileComponent,
     CvListComponent,
     CvItemComponent,
-    CvViewComponent
+    CvViewComponent,
+    CompanyProfileComponent
   ],
   imports: [
     BrowserModule,

@@ -1,4 +1,4 @@
-import { Component, OnInit, Output } from '@angular/core';
+import { Component, OnInit, Output, Input } from '@angular/core';
 import { Route, ActivatedRoute, Router } from '@angular/router';
 import { SearchCVServiceService } from './services/search-cvservice.service';
 import { UserService, Error } from 'src/app/common/services/user.service';
@@ -15,7 +15,8 @@ export class CandidateProfileComponent extends AbstractForm implements OnInit {
   CandidateId: any;
   listCV: cv[];
   CVItemToView: cv;
-
+  @Input() cv: cv;
+  
   constructor(private route: ActivatedRoute,
     private searchCVServiceService: SearchCVServiceService,
     private routerService: Router,
@@ -42,6 +43,7 @@ export class CandidateProfileComponent extends AbstractForm implements OnInit {
   getActiveUser() {
     this.userService.getActiveUser().subscribe((user) => {
       console.log(user);
-    });   
-  }
+    });      
+  }  
+ 
 }

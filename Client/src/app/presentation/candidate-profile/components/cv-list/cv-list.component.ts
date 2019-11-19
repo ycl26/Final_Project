@@ -9,7 +9,7 @@ import { cv } from 'src/app/common/models/cv-model';
 export class CvListComponent implements OnInit {
   @Input() listCV:cv[];
   @Output() onCVItemClick= new EventEmitter<any>();
- 
+  selectedIndex: number = 1;
 
   constructor() { }
 
@@ -18,6 +18,11 @@ export class CvListComponent implements OnInit {
   onCVViewDisplay(selectedCVItem){
     this.onCVItemClick.emit(selectedCVItem);
     console.log('que pasa');
+    
   }
+  setIndex(index: number) {
+   this.selectedIndex = index;
+ }
 }
+
 

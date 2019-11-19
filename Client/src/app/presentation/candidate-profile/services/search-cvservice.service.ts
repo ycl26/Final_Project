@@ -20,11 +20,11 @@ export class SearchCVServiceService {
   _createMockCV() {
     let i = 0;
     return [
-      { id: i++, title: 'engineer', profile: 'wuhgfviwuegfvpiefv', workExp: 'this is the description of the cv', education: 'bruto muy bruto',active:false },
-      { id: i++, title: 'developper', profile: 'wuhgfviwuegfvpiefv', workExp: 'this is the description of the cv', education: 'bruto muy bruto',active:true  },
-      { id: i++, title: 'cosmonauta', profile: 'wuhgfviwuegfvpiefv', workExp: 'this is the description of the cv', education: 'bruto muy bruto',active:false },
-      { id: i++, title: 'quitaNieve', profile: 'wuhgfviwuegfvpiefv', workExp: 'this is the description of the cv', education: 'bruto muy bruto',active:false},
-      { id: i++, title: 'tester', profile: 'wuhgfviwuegfvpiefv', workExp: 'this is the description of the cv', education: 'bruto muy bruto',active:false },
+      { id: i++, title: 'engineer', profile: 'here goes your introduction', workExp: 'this is the description of the cv', education: 'bruto muy bruto',active:false,languages:'English, French, Spanish' },
+      { id: i++, title: 'developper', profile: 'here goes your introduction', workExp: 'this is the description of the cv', education: 'bruto muy bruto',active:true,languages:'English, French, Spanish'  },
+      { id: i++, title: 'cosmonauta', profile: 'here goes your introduction', workExp: 'this is the description of the cv', education: 'bruto muy bruto',active:false,languages:'English, French, Spanish' },
+      { id: i++, title: 'quitaNieve', profile: 'here goes your introduction', workExp: 'this is the description of the cv', education: 'bruto muy bruto',active:false,languages:'English, French, Spanish'},
+      { id: i++, title: 'tester', profile: 'here goes your introduction', workExp: 'this is the description of the cv', education: 'bruto muy bruto',active:false,languages:'English, French, Spanish' },
 
     ]
   }

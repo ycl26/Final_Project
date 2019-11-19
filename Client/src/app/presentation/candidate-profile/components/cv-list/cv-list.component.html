@@ -1,5 +1,7 @@
 <ul >
-    <li *ngFor="let cv of listCV" (click)="onCVViewDisplay(cv)">
+    <li (click)="onCVViewDisplay(cv)" *ngFor="let cv of listCV; let i = index" [class.active]="selectedIndex === i" 
+    (click)="setIndex(i)" >
         <app-cv-item [cv]="cv"></app-cv-item>
     </li>
 </ul>
+

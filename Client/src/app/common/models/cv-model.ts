@@ -5,5 +5,6 @@ export class cv{
     workExp:string;    
     education:string;
     active:boolean;
+    languages:string;
 
 }

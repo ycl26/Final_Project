@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input} from '@angular/core';
 import { cv } from 'src/app/common/models/cv-model';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SearchJobService } from 'src/app/presentation/job-offers/services/search-job.service';
@@ -27,7 +27,7 @@ onEditClick(){
 }
 onSaveClick(){  
   this.editMode=false;
-  
+
 }
 onCancelClick(){
   this.editMode=false;
