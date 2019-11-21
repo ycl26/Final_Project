@@ -6,6 +6,8 @@ import { LoginComponent } from './presentation/login/login.component';
 import { HomeComponent } from './presentation/home/home.component';
 import { JobOffersComponent } from './presentation/job-offers/job-offers.component';
 import { CandidateProfileComponent } from './presentation/candidate-profile/candidate-profile.component';
+import { CompanyProfileComponent } from './presentation/company-profile/company-profile.component';
+
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -13,6 +15,7 @@ const routes: Routes = [
   { path: 'about', component: AboutUsComponent },
   { path: 'jobOffers', component: JobOffersComponent },
   { path: 'candidateProfile', component: CandidateProfileComponent },
+  {path:'companyProfile', component:CompanyProfileComponent},
   { path: '**', redirectTo: 'home' }
 ];
 

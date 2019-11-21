@@ -1,0 +1,29 @@
+#compLogo{
+    margin: 1% 5%;
+    width:15%;
+    max-height:20%;
+}
+#inputSearch{
+    width: 60%;         
+    padding: 1% 1%;
+    align-content: center;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    margin: 0% 0%;
+    cursor: pointer;
+    border-radius: 15px;    
+}
+
+#searchHomebutton{        
+    border: none;       
+    padding: 1% 1%;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    margin: 1% 1%;
+    cursor: pointer;
+    border-radius: 15px; 
+    width: 25%;   
+    align-content: center;  
+}
