@@ -4,3 +4,16 @@
     width:30px;
     max-height:30px;
 }
+button{        
+    border: none;       
+    padding: 1% 1%;
+    text-align: right;
+    text-decoration: none;
+    
+    float:right;
+    margin: 1%;
+    cursor: pointer;
+    border-radius: 15px; 
+    width: 25%;   
+    align-content: right;     
+  }

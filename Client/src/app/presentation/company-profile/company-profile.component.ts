@@ -6,10 +6,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./company-profile.component.css']
 })
 export class CompanyProfileComponent implements OnInit {
-
+  editMode:boolean; 
   constructor() { }
 
   ngOnInit() {
+   
   }
-
+  onEditClick(){
+    this.editMode=true;
+  }
+  onSaveClick(){  
+    this.editMode=false;  
+  }
 }

@@ -2,8 +2,9 @@
     <div class="row">
         <div class="col-lg-3">
             <div class="card">
-                <h4 class=" card-header card-text text-info"> <img id="compLogo" src="./assets/img/logo.png"
-                        class=" card-img-top img-responsive"> Company Name</h4>
+                <h5 class=" card-header card-text text-info">
+                    <img id="compLogo" src="./assets/img/logo.png" class="card-img-top img-responsive"> Company Name
+                </h5>
                 <div class="card-body">
                     <ul id="home" class="list-group list-group-flush">
                         <li class="list-group-item">
@@ -15,31 +16,42 @@
             </div>
             <div class="card">
                 <div class="card-header">
-                    <h5 class="card-text text-info" data-toggle="collapse" href="#collapse1"><i
-                            class="far fa-question-circle"></i> About us</h5>
+                    <h5 id="aboutUsText"><span class="card-text text-info" data-toggle="collapse" href="#collapse1"><i
+                                class="far fa-question-circle"></i> About us</span> </h5>
+                    <button id="editSavebutton" class="bg-info text-light" (click)="onEditClick()" *ngIf="!editMode">
+                        <i class="far fa-edit"></i>
+                        Edit</button>
+                    <button id="editSavebutton" class="bg-info text-light" (click)="onSaveClick()" *ngIf="editMode"><i
+                            class="far fa-save"></i>
+                        Save</button>
                 </div>
                 <div id="collapse1" class="card-body">
-                    <p class="card-text">about the company</p>
+                    <textarea *ngIf="editMode" class="card-text">about the company</textarea>
+                    <p *ngIf="!editMode" class="card-text">about the company</p>
                 </div>
             </div>
             <div class="card">
-                <div class="card-header ">
-                    <h5 class="card-text text-info"  data-toggle="collapse" href="#collapse2"> <i class="fas fa-list"></i> Posted Jobs</h5>
-                </div>
-                <div id="collapse2" class="card-body">
-                    <p class="card-text"> here goes the list of jobs of this company</p>
-                </div>
-            </div>
-            <div class="card">                
                 <div class="card-body">
                     <input id="inputSearch" placeholder="Candidate search">
-                    <button id="searchHomebutton" class="btn btn-info btn-text-light"> search</button>
+                    <button id="searchCandidatebutton" class="btn btn-info btn-text-light"> search</button>
                 </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-lg">
-
-            </div>
-        </div>
+        </div>       
+            <div class="col-lg-3">
+                <div class="card">
+                    <div class="card-header ">
+                        <h5><span class="card-text text-info" data-toggle="collapse" href="#collapse2"><i
+                                    class="fas fa-list"></i> Posted Jobs</span></h5>
+                        <button id="Savebutton" class="bg-info text-light">
+                            <i class="far fa-edit"></i>
+                            Add</button>
+                    </div>
+                    <div id="collapse2" class="card-body">
+                        <p class="card-text"> here goes the list of jobs of this company</p>
+                    </div>
+                </div>
+            </div> 
+            <div class="col-lg-6">
+                    <app-job-view ></app-job-view>
+                </div>    
     </div>

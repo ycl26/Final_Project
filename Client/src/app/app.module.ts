@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {HttpClientModule} from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import{MatDivider} from '@angular/material';
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -36,7 +37,8 @@ import { CompanyProfileComponent } from './presentation/company-profile/company-
     CvListComponent,
     CvItemComponent,
     CvViewComponent,
-    CompanyProfileComponent
+    CompanyProfileComponent,
+    MatDivider
   ],
   imports: [
     BrowserModule,

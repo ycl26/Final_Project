@@ -1,5 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import{MatDivider} from '@angular/material';
 import { cv } from 'src/app/common/models/cv-model';
+import { from } from 'rxjs';
 
 @Component({
   selector: 'app-cv-list',
