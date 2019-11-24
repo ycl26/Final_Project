@@ -10,7 +10,8 @@ import { SearchJobService } from 'src/app/presentation/job-offers/services/searc
   styleUrls: ['./cv-view.component.css']
 })
 export class CvViewComponent implements OnInit {
-  @Input() cv: cv;
+  @Input() cv: cv; 
+  @Input() listCV:cv[];   
   editMode:boolean;
   constructor(
     private route: ActivatedRoute,
@@ -24,6 +25,10 @@ export class CvViewComponent implements OnInit {
   }
 onEditClick(){
   this.editMode=true;
+}
+onDeleteClick(){
+this.listCV.splice(this.cv.id,1);
+
 }
 onSaveClick(){  
   this.editMode=false;

@@ -8,6 +8,8 @@
         <div class="col-lg-5">
             <button class="bg-info text-light" (click)="onEditClick()" *ngIf="!editMode"><i class="far fa-edit"></i>
                 Edit</button>
+                <button class="bg-info text-light" (click)="onDeleteClick()" *ngIf="!editMode"><i class="far fa-trash-alt"></i>
+                    Delete</button>
             <button class="bg-info text-light" (click)="onSaveClick()" *ngIf="editMode"><i class="far fa-save"></i>
                 Save</button>
             <button class="bg-info text-light" (click)="onCancelClick()" *ngIf="editMode"><i class="fas fa-ban"></i>

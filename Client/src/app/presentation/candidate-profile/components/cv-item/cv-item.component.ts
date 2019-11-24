@@ -7,12 +7,11 @@ import { cv } from 'src/app/common/models/cv-model';
   styleUrls: ['./cv-item.component.css']
 })
 export class CvItemComponent implements OnInit {
-  @Output() @Input() cv: cv;
-
+  @Output() @Input() cv: cv;  
   constructor() { }
   
   ngOnInit() {
   }
+ 
   
-
 }

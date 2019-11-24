@@ -63,6 +63,33 @@ textarea {
     margin:1%;
     cursor: pointer;
     border-radius: 15px; 
-    width: 30%;   
+    width: 35%;   
     align-content: center;     
   }
+  .col{
+padding: 1%;
+margin: 1%;
+  }
+  #createJobbutton{        
+    border: none;       
+    padding: 1% 1%;
+    text-align: center;
+    text-decoration: none;  
+    display:inline-block;             
+    margin:1%;
+    cursor: pointer;
+    border-radius: 15px; 
+    width: 40%;   
+    align-content: center;     
+  }
+  #inputJobtype{
+    width: 65%;         
+    padding: 1% 1%;
+    align-content: center;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    margin: 0% 0%;
+    cursor: pointer;
+    border-radius: 15px;    
+}

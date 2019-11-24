@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import {  Job } from 'src/app/common/models/job-model';
 
 @Component({
   selector: 'app-company-profile',
@@ -7,6 +8,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CompanyProfileComponent implements OnInit {
   editMode:boolean; 
+  newJobTitle:string= "New Job Title";
+  @Input() jobs:Job[]; 
+  
   constructor() { }
 
   ngOnInit() {

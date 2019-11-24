@@ -15,6 +15,7 @@ export class CandidateProfileComponent extends AbstractForm implements OnInit {
   CandidateId: any;
   listCV: cv[];
   CVItemToView: cv;
+  newCVTitle:string="New CV Title";
   @Input() cv: cv;
   
   constructor(private route: ActivatedRoute,

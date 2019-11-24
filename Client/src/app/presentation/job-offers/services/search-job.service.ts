@@ -23,7 +23,7 @@ export class SearchJobService {
   }
 
   getJobs(jobName: string) {
-    const byName = (job) => job.name.indexOf(jobName) > -1; 
+    const byName = (job) => job.title.indexOf(jobName) > -1; 
     // const filteredJobs = this.cacheJobs.filter(byName);
     let filteredJobs = [];
     if (jobName == undefined) {
@@ -39,11 +39,11 @@ export class SearchJobService {
   _createMockJobs() {
     let i = 0;
     return [
-      { id: i++, name: 'expedia', date: '20-02-19', description: 'this is the description of the job',type:'Permanent',companyLogo:'../assets/img/logo.png' },
-      { id: i++, name: 'cgi', date: '20-02-19', description: 'this is the description of the job',type:'Permanent' },
-      { id: i++, name: 'bnp', date: '20-02-19', description: 'this is the description of the job',type:'Permanent' },
-      { id: i++, name: 'bca', date: '20-02-19', description: 'this is the description of the job',type:'Permanent' },
-      { id: i++, name: 'it', date: '20-02-19', description: 'this is the description of the job',type:'Permanent' },
+      { id: i++, title: 'expedia', date: '20-02-19', description: 'this is the description of the job',type:'Permanent',companyLogo:'../assets/img/logo.png' },
+      { id: i++, title: 'cgi', date: '20-02-19', description: 'this is the description of the job',type:'Permanent' },
+      { id: i++, title: 'bnp', date: '20-02-19', description: 'this is the description of the job',type:'Permanent' },
+      { id: i++, title: 'bca', date: '20-02-19', description: 'this is the description of the job',type:'Permanent' },
+      { id: i++, title: 'it', date: '20-02-19', description: 'this is the description of the job',type:'Permanent' },
 
     ]
   }

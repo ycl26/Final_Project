@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import{MatDivider} from '@angular/material';
 
 
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './presentation/app.component';
 import { LoginComponent } from './presentation/login/login.component';
@@ -38,7 +39,8 @@ import { CompanyProfileComponent } from './presentation/company-profile/company-
     CvItemComponent,
     CvViewComponent,
     CompanyProfileComponent,
-    MatDivider
+    MatDivider,
+   
   ],
   imports: [
     BrowserModule,

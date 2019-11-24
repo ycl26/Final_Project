@@ -15,17 +15,66 @@
                             <h5 class="card-text text-info"><i class="fas fa-envelope"></i> email</h5>
 
                         </li>
+
                         <li class="list-group-item">
-                            <app-cv-list (onCVItemClick)='recievedOnCVItemClick($event)' [listCV]="listCV">
-                            </app-cv-list>
-                        </li>                     
+                            <div class="card">
+                                <div class="card-header ">
+                                    <h5 class="card-text text-info" data-toggle="collapse" href="#collapse2"><i
+                                                class="fas fa-list"></i> My CVs</h5>
+                                    <button id="Savebutton" class="bg-info text-light" data-toggle="modal"
+                                        data-target="#modalAddCV">
+                                        <i class="far fa-edit"></i>
+                                        Add New</button>
+                                </div>
+                            </div>
+                            <div id="collapse2" class="card-body">
+                                <app-cv-list (onCVItemClick)='recievedOnCVItemClick($event)' [listCV]="listCV">
+                                </app-cv-list>
+                            </div>
+                        </li>
                     </ul>
                 </div>
 
             </div>
         </div>
         <div class="col-lg-9">
-            <app-cv-view  [cv]='CVItemToView'></app-cv-view>
+            <app-cv-view [cv]='CVItemToView' [listCV]="listCV"></app-cv-view>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="modalAddCV">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title text-dark">{{newCVTitle}}</h3>
+                <button data-dismiss="modal" class="close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="col form-group">
+                    <label for="CVTitle"> CV Title</label>
+                    <input name="CVTitle" id="CVTitle" class="form-control" [(ngModel)]="newCVTitle">
+                </div>
+                <div class="col form-group">
+                    <label for="CVProfile"> Profile</label>
+                    <textarea name="CVProfile" id="CVProfile" class="form-control"></textarea>
+                </div>
+                <div class="col form-group">
+                    <label for="CVworkE"> Work Experience</label>
+                    <textarea name="CVworkE" id="CVworkE" class="form-control"></textarea>
+                </div>
+                <div class="col form-group">
+                    <label for="CVEducation"> Education</label>
+                    <textarea name="CVEducation" id="CVEducation" class="form-control"></textarea>
+                </div>
+                <div class="col form-group">
+                    <label for="CVLanguages"> Languages</label>
+                    <textarea name="CVLanguages" id="CVLanguages" class="form-control"></textarea>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-success" data-toggle="modal" data-target="#modal1">Cancel</button>
+                <button class="btn btn-success" data-toggle="modal" data-target="#modal1">Add</button>
+            </div>
         </div>
     </div>
 </div>
