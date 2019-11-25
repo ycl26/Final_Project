@@ -16,6 +16,9 @@ export class CvListComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    
+      this.selectedIndex = this.listCV.find(function (item) { return item.active === true; }).id;
+   
   }
   onCVViewDisplay(selectedCVItem){
     this.onCVItemClick.emit(selectedCVItem);
