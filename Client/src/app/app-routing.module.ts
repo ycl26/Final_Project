@@ -7,6 +7,7 @@ import { HomeComponent } from './presentation/home/home.component';
 import { JobOffersComponent } from './presentation/job-offers/job-offers.component';
 import { CandidateProfileComponent } from './presentation/candidate-profile/candidate-profile.component';
 import { CompanyProfileComponent } from './presentation/company-profile/company-profile.component';
+import { ContactUsComponent } from './presentation/contact-us/contact-us.component';
 
 
 const routes: Routes = [
@@ -16,6 +17,7 @@ const routes: Routes = [
   { path: 'jobOffers', component: JobOffersComponent },
   { path: 'candidateProfile', component: CandidateProfileComponent },
   {path:'companyProfile', component:CompanyProfileComponent},
+  {path:'contactUs', component:ContactUsComponent},
   { path: '**', redirectTo: 'home' }
 ];
 

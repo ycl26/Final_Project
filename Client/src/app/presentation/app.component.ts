@@ -11,7 +11,7 @@ import { takeUntil } from 'rxjs/operators';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent extends AbstractForm {
-
+  
   title = 'Client';
   activeUser: ActiveUser;
   constructor(private userService: UserService) {
@@ -30,4 +30,5 @@ export class AppComponent extends AbstractForm {
   isGuest() {
     return this.activeUser.type === UserType.Guest;
   }  
+ 
 }

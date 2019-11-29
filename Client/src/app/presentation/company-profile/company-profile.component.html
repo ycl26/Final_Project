@@ -18,10 +18,10 @@
                 <div class="card-header">
                     <h5 id="aboutUsText"><span class="card-text text-info" data-toggle="collapse" href="#collapse1"><i
                                 class="far fa-question-circle"></i> About us</span> </h5>
-                    <button id="editSavebutton" class="bg-info text-light" (click)="onEditClick()" *ngIf="!editMode">
+                    <button id="AboutUsButton" class="bg-info text-light" (click)="onEditClick()" *ngIf="!editMode">
                         <i class="far fa-edit"></i>
                         Edit</button>
-                    <button id="editSavebutton" class="bg-info text-light" (click)="onSaveClick()" *ngIf="editMode"><i
+                    <button id="AboutUsButton" class="bg-info text-light" (click)="onSaveClick()" *ngIf="editMode"><i
                             class="far fa-save"></i>
                         Save</button>
                 </div>
@@ -46,6 +46,12 @@
                         data-target="#modalAddJob">
                         <i class="far fa-edit"></i>
                         Create</button>
+                        <button id="editJobbutton" class="bg-info text-light" >
+                        <i class="far fa-edit"></i>
+                        Edit</button>
+                        <button id="deleteJobbutton" class="bg-info text-light" >
+                        <i class="far fa-edit"></i>
+                        Delete</button>
                 </div>
                 <div class="row">
                     <div class="modal fade" id="modalAddJob">

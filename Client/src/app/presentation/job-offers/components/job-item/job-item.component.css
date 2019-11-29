@@ -6,9 +6,10 @@
 }
 #myItem{
     width: 100%;
+    margin: 1px;
 }
 .card{
-    margin: 1%;
+    margin: 1px;
     width: 100%;
 }
 button{        

@@ -22,7 +22,7 @@ export class CvViewComponent implements OnInit {
   }
 
   ngOnInit() {
-  }
+  } 
 onEditClick(){
   this.editMode=true;
 }

@@ -15,7 +15,7 @@ export class JobOffersComponent extends AbstractForm implements OnInit {
   filterKeyWord:any;
   jobItemToView:Job;
   @Output() jobs:Job[]; 
- 
+  
   constructor(
     private route: ActivatedRoute,
     private searchJobService: SearchJobService,
@@ -46,6 +46,7 @@ export class JobOffersComponent extends AbstractForm implements OnInit {
   newSearch() {    
     this.searchJobService.getJobs(this.filterKeyWord).subscribe((jobs) => {
       this.jobs = jobs;
+      this.jobItemToView=this.jobs[0];     
     });  
     console.log(this.filterKeyWord);
   } 
