@@ -40,7 +40,7 @@ function doUserLogin(req, res) {
         res.send({
             data: data
         });
-    }, (error) => {
+    }, (error) =>{
         return tryToFindInCandidates(query);
     }).then((candidate) => {
         const data = {

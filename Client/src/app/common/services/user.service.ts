@@ -47,6 +47,7 @@ export class UserService {
     return this._user$.asObservable();
   }
 
+
   _updateActiveUser(candidateOrCompany: Candidate | Company) {
     this._user$.next(<any>candidateOrCompany);
     return candidateOrCompany;

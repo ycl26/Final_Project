@@ -8,6 +8,7 @@ import { Job } from 'src/app/common/models/job-model';
 })
 export class JobListComponent implements OnInit {
   @Input() jobs:Job[];
+  @Input() displayEditDeleteButton: boolean;
   @Output() onJobItemClick= new EventEmitter<any>();
   constructor() { }
 

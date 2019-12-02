@@ -7,6 +7,7 @@ export enum UserType {
 export class User {
     email: string;
     psw: string;
+    // type:UserType;
 }
 
 export class Candidate extends User {

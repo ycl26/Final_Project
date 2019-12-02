@@ -29,6 +29,12 @@ export class AppComponent extends AbstractForm {
 
   isGuest() {
     return this.activeUser.type === UserType.Guest;
-  }  
+   }  
+   isCandidate() {
+    return this.activeUser.type === UserType.Candidate;
+   }  
+   isCompany() {
+    return this.activeUser.type === UserType.Company;
+   }  
  
 }

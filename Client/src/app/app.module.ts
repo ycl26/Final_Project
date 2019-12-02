@@ -23,6 +23,7 @@ import { CvViewComponent } from './presentation/candidate-profile/components/cv-
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CompanyProfileComponent } from './presentation/company-profile/company-profile.component';
 import { ContactUsComponent } from './presentation/contact-us/contact-us.component';
+import { ActiveCvListComponent } from './presentation/company-profile/active-cv-list/active-cv-list.component';
 
 
 @NgModule({
@@ -42,6 +43,7 @@ import { ContactUsComponent } from './presentation/contact-us/contact-us.compone
     CompanyProfileComponent,
     MatDivider,
     ContactUsComponent,
+    ActiveCvListComponent,
    
   ],
   imports: [

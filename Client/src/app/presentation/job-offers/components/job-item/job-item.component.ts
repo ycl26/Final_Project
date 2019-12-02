@@ -8,13 +8,14 @@ import { Job } from 'src/app/common/models/job-model';
   styleUrls: ['./job-item.component.css']
 })
 export class JobItemComponent implements OnInit {
-
+  @Input() displayEditDeleteButton: boolean;
   @Output() @Input() job: Job;
 
   constructor() { }
-  
+
   ngOnInit() {
   }
-  
+
+
 
 }

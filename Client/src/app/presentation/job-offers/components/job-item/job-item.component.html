@@ -1,7 +1,17 @@
 <div id="myItem" class="card">
     <div class="card-header bg-info text-light">
+        <div class="col-xs-8">
         <img id="JobCompanyLogo" class="card-img-left" src={{job.companyLogo}}>
-        <h3>{{job.title}}</h3>
+        <h3 id="jobTitletext"><span>{{job.title}}</span></h3>
+    </div>
+        <div class="col-xs-4"  *ngIf="displayEditDeleteButton">
+            <button id="editJobbutton" class="bg-info text-light">
+                <i class="far fa-edit"></i>
+            </button>
+            <button id="deleteJobbutton" class="bg-info text-light">
+                <i class="far fa-trash-alt"></i>
+            </button>
+        </div>
     </div>
     <div class="card-body text-info">
         <h3 class="card-title">{{job.title}}</h3>
@@ -10,7 +20,7 @@
         <p class="card-text"> {{job.description}}</p>
     </div>
     <div class="card-footer bg-info text-light">
-        <p class="card-text">{{job.date}} <button class="bg-info text-light"><i class="fas fa-share-square"></i>
+        <p class="card-text">{{job.date}} <button class="bg-info text-light"  *ngIf="!displayEditDeleteButton" ><i class="fas fa-share-square"></i>
                 Apply</button>
     </div>
 </div>

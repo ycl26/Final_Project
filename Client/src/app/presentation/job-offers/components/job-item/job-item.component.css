@@ -24,3 +24,32 @@ button{
     width: 25%;   
     align-content: right;     
   }
+  #jobTitletext{
+      width: 60%;
+      float: left;
+  }
+  #deleteJobbutton{        
+    border: none;       
+    padding: 1% 1%;
+    text-align: center;
+    text-decoration: none;  
+    display:inline-block;             
+    margin:1%;
+    cursor: pointer;
+    border-radius: 15px; 
+    width: 10%;   
+    align-content: center;     
+  }
+  #editJobbutton{        
+    border: none;       
+    padding: 1% 1%;
+    text-align: center;
+    text-decoration: none;  
+    display:inline-block;             
+    margin:1%;
+    cursor: pointer;
+    border-radius: 15px; 
+    width: 10%;   
+    align-content: center; 
+       
+  }

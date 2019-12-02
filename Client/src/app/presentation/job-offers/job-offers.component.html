@@ -47,10 +47,10 @@
   </div>
   <div class="row">
     <div class="col-lg-5">
-      <app-job-list (onJobItemClick)='recievedOnJobItemClick($event)' [jobs]="jobs"></app-job-list>
+      <app-job-list (onJobItemClick)='recievedOnJobItemClick($event)' [displayEditDeleteButton]="activeUser.type=='Company'" [jobs]="jobs"></app-job-list>
     </div>
     <div class="col-lg-7">      
-      <app-job-view  [job]="jobItemToView"></app-job-view>
+      <app-job-view [displayEditDeleteButton]="activeUser.type=='Company'"  [job]="jobItemToView"></app-job-view>
     </div>
   </div>
 </div>

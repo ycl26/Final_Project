@@ -66,12 +66,12 @@ export class LoginComponent implements OnInit {
     return this.signUpType === type;
   }
   handleSignUpUser(candidateOrCompany: Candidate | Company) {
-    this.userService.signup(candidateOrCompany).subscribe((userOrError: Candidate | Company | Error) => {
+    this.userService.signup(candidateOrCompany).subscribe((userOrError: Candidate | Company | Error) => {     
       switch (userOrError.type) {
         case UserType.Candidate:
           this.routerService.navigate(['jobOffers']); break;
-        case UserType.Company:
-          this.routerService.navigate(['listOfcandidates']); break;
+        case UserType.Company:          
+          this.routerService.navigate(['companyProfile']); break;
         default:
           this.errorMessage = userOrError.errorMessage;
       }
@@ -106,9 +106,9 @@ export class LoginComponent implements OnInit {
       this.userService.login(this.user.email, this.user.psw).subscribe((userOrError) => {
         switch (userOrError.type) {
           case UserType.Candidate:
-            this.routerService.navigate(['jobOffers']); break;
+            this.routerService.navigate(['jobOffers']); break;                     
           case UserType.Company:
-            this.routerService.navigate(['listOfcandidates']); break;
+            this.routerService.navigate(['companyProfile']); break;
           default:
             this.errorMessage = userOrError.errorMessage;
         }

@@ -11,6 +11,7 @@ import { Job } from 'src/app/common/models/job-model';
 })
 export class JobViewComponent implements OnInit {
   @Input() job: Job;
+  @Input() displayEditDeleteButton: boolean;
   constructor(
     private route: ActivatedRoute,
     private searchJobService: SearchJobService,
