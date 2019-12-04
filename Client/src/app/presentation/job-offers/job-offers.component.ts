@@ -42,7 +42,7 @@ export class JobOffersComponent extends AbstractForm implements OnInit {
 
     this.keyword = keyword;  
 
-      this.userService.getActiveUser().pipe(
+    this.userService.getActiveUser().pipe(
         takeUntil(this._unsubscribe$),
       ).subscribe((user) => {
         this.activeUser = user;

@@ -1,5 +1,5 @@
 <ul>
-    <li *ngFor="let job of jobs" (click)="onJobViewDisplay(job)">
+    <li *ngFor="let job of jobs, let i of index" (click)="onJobViewDisplay(job)">
         <app-job-item [displayEditDeleteButton]="displayEditDeleteButton" [job]="job"></app-job-item>
     </li>
 </ul>

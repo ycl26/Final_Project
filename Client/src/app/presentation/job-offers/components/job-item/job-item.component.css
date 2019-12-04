@@ -53,3 +53,16 @@ button{
     align-content: center; 
        
   }
+  #SaveCancelbutton{        
+    border: none;       
+    padding: 1% 1%;
+    text-align: center;
+    text-decoration: none;  
+    display:inline-block;  
+    float: right !important;        
+    margin:1%;
+    cursor: pointer;
+    border-radius: 15px; 
+    width: 15%;   
+    align-content: center;   
+  }

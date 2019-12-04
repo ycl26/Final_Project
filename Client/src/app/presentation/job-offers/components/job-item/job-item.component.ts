@@ -9,13 +9,10 @@ import { Job } from 'src/app/common/models/job-model';
 })
 export class JobItemComponent implements OnInit {
   @Input() displayEditDeleteButton: boolean;
-  @Output() @Input() job: Job;
-
+  @Output() @Input() job: Job; 
   constructor() { }
 
   ngOnInit() {
+
   }
-
-
-
 }

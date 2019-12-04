@@ -1,3 +1,6 @@
+import { cv } from './cv-model';
+import { Job } from './job-model';
+
 export enum UserType {
     Company = 'Company',
     Candidate = 'Candidate',
@@ -14,11 +17,13 @@ export class Candidate extends User {
     firstName: string;
     lastName: string;
     type: UserType.Candidate
+    cvList:cv[];
 }
 
 export class Company extends User {
     companyName: string;
-    type: UserType.Company
+    type: UserType.Company;
+    jobOffersList:Job[];
 }
 
 export class Guest extends User {
