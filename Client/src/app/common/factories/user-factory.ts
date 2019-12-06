@@ -18,6 +18,7 @@ export const createDefaultCandidate = (): Candidate => {
     lastName: '',
     psw: '',
     type: UserType.Candidate,
+    cvList: []
   }
 }
 
@@ -27,5 +28,6 @@ export const createDefaultCompany = (): Company => {
     companyName: '',
     psw: '',
     type: UserType.Company,
+    jobOffersList: []
   }
 }

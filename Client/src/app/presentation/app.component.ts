@@ -3,7 +3,8 @@ import { UserService } from '../common/services/user.service';
 import { User, UserType, ActiveUser } from '../common/models/user-model';
 import { Observable } from 'rxjs';
 import { AbstractForm } from 'src/infra/form/abstract-form';
-import { takeUntil } from 'rxjs/operators';
+import { takeUntil, switchMap, switchMapTo } from 'rxjs/operators';
+
 
 @Component({
   selector: 'app-root',
@@ -20,7 +21,16 @@ export class AppComponent extends AbstractForm {
   }
 
   _initialize() {
-    this.userService.getActiveUser().pipe(
+    // this.userService.initialize().subscribe(() => {
+    //   this.userService.getActiveUser().pipe(
+    //     takeUntil(this._unsubscribe$),
+    //   ).subscribe((user) => {
+    //     this.activeUser = user;
+    //   });
+    // });
+
+    this.userService.initialize().pipe(
+      switchMapTo(this.userService.getActiveUser()),
       takeUntil(this._unsubscribe$),
     ).subscribe((user) => {
       this.activeUser = user;
@@ -28,13 +38,17 @@ export class AppComponent extends AbstractForm {
   }
 
   isGuest() {
-    return this.activeUser.type === UserType.Guest;
+    return this.activeUser && this.activeUser.type === UserType.Guest;
    }  
    isCandidate() {
-    return this.activeUser.type === UserType.Candidate;
+    return this.activeUser && this.activeUser.type === UserType.Candidate;
    }  
    isCompany() {
-    return this.activeUser.type === UserType.Company;
-   }  
+    return this.activeUser && this.activeUser.type === UserType.Company;
+   } 
+   
+   logout() {
+    this.userService.logout();
+   }
  
 }

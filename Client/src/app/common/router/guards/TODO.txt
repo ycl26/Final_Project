@@ -1,0 +1,5 @@
+TODO add guard .. 
+- only allow candidates to access
+    - candidate profile page
+- only allow companies to access
+    - company profile page

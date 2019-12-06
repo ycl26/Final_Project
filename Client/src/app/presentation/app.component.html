@@ -35,7 +35,7 @@
             href="#">CandidateProfile</a>         
         </li>      
       <li class="nav-item dropdown" *ngIf="isCandidate() || isCompany()">
-          <a class="nav-link " routerLinkActive="active" href="#">Logout</a>        
+          <a class="nav-link " [routerLink]="['/home']" routerLinkActive="active" href="#" (click)="logout()">Logout</a>        
       </li>
         
       </ul>
