@@ -12,7 +12,7 @@ import { takeUntil, switchMap, switchMapTo } from 'rxjs/operators';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent extends AbstractForm {
-  
+
   title = 'Client';
   activeUser: ActiveUser;
   constructor(private userService: UserService) {
@@ -39,16 +39,16 @@ export class AppComponent extends AbstractForm {
 
   isGuest() {
     return this.activeUser && this.activeUser.type === UserType.Guest;
-   }  
+   }
    isCandidate() {
     return this.activeUser && this.activeUser.type === UserType.Candidate;
-   }  
+   }
    isCompany() {
     return this.activeUser && this.activeUser.type === UserType.Company;
-   } 
-   
+   }
+
    logout() {
     this.userService.logout();
    }
- 
+
 }

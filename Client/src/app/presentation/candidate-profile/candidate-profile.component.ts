@@ -4,7 +4,7 @@ import { SearchCVServiceService } from './services/search-cvservice.service';
 import { UserService, Error } from 'src/app/common/services/user.service';
 import { AbstractForm } from 'src/infra/form/abstract-form';
 import { takeUntil } from 'rxjs/operators';
-import { cv } from 'src/app/common/models/cv-model';
+import { CV } from 'src/app/common/models/cv-model';
 
 @Component({
   selector: 'app-candidate-profile',
@@ -13,15 +13,15 @@ import { cv } from 'src/app/common/models/cv-model';
 })
 export class CandidateProfileComponent extends AbstractForm implements OnInit {
   CandidateId: any;
-  listCV: cv[];
-  CVItemToView: cv;
-  newCVTitle:string="New CV Title";
-  @Input() cv: cv;
-  
+  listCV: CV[];
+  CVItemToView: CV;
+  newCVTitle = 'New CV Title';
+  @Input() cv: CV;
+
   constructor(private route: ActivatedRoute,
-    private searchCVServiceService: SearchCVServiceService,
-    private routerService: Router,
-    private userService:UserService,
+              private searchCVServiceService: SearchCVServiceService,
+              private routerService: Router,
+              private userService: UserService,
   ) {
     super();
   }
@@ -35,16 +35,15 @@ export class CandidateProfileComponent extends AbstractForm implements OnInit {
     });
     console.log(this.CandidateId);
   }
-  recievedOnCVItemClick($event) {
+  receivedOnCVItemClick($event) {
     this.CVItemToView = $event;
   }
   getActiveCV() {
-    this.CVItemToView = this.listCV.find(function (item) { return item.active === true; });
+    this.CVItemToView = this.listCV.find((item) => item.active === true);
   }
   getActiveUser() {
     this.userService.getActiveUser().subscribe((user) => {
       console.log(user);
-    });      
-  }  
- 
+    });
+  }
 }

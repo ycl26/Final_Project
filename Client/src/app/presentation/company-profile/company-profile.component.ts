@@ -7,19 +7,19 @@ import {  Job } from 'src/app/common/models/job-model';
   styleUrls: ['./company-profile.component.css']
 })
 export class CompanyProfileComponent implements OnInit {
-  editMode:boolean; 
-  newJobTitle:string= "New Job Title";
-  @Input() jobs:Job[]; 
-  
+  editMode: boolean;
+  newJobTitle = 'New Job Title';
+  @Input() jobs: Job[];
+
   constructor() { }
 
   ngOnInit() {
-   
+
   }
-  onEditClick(){
-    this.editMode=true;
+  onEditClick() {
+    this.editMode = true;
   }
-  onSaveClick(){  
-    this.editMode=false;  
+  onSaveClick() {
+    this.editMode = false;
   }
 }

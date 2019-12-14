@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {HttpClientModule} from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
-import{MatDivider} from '@angular/material';
+import {MatDivider} from '@angular/material';
 
 
 
@@ -44,7 +44,7 @@ import { ActiveCvListComponent } from './presentation/company-profile/active-cv-
     MatDivider,
     ContactUsComponent,
     ActiveCvListComponent,
-   
+
   ],
   imports: [
     BrowserModule,
@@ -52,7 +52,7 @@ import { ActiveCvListComponent } from './presentation/company-profile/active-cv-
     AppRoutingModule,
     FormsModule,
     BrowserAnimationsModule ,
-         
+
   ],
   providers: [],
   bootstrap: [AppComponent]

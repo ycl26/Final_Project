@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output } from '@angular/core';
-import { cv } from 'src/app/common/models/cv-model';
+import { CV } from 'src/app/common/models/cv-model';
 
 @Component({
   selector: 'app-active-cv-list',
@@ -7,7 +7,7 @@ import { cv } from 'src/app/common/models/cv-model';
   styleUrls: ['./active-cv-list.component.css']
 })
 export class ActiveCvListComponent implements OnInit {
-  @Input() listCV:cv[];
+  @Input() listCV: CV[];
   constructor() { }
 
   ngOnInit() {

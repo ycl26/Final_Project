@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import{MatDivider} from '@angular/material';
-import { cv } from 'src/app/common/models/cv-model';
+import {MatDivider} from '@angular/material';
+import { CV } from 'src/app/common/models/cv-model';
 import { from } from 'rxjs';
 
 @Component({
@@ -9,21 +9,21 @@ import { from } from 'rxjs';
   styleUrls: ['./cv-list.component.css']
 })
 export class CvListComponent implements OnInit {
-  @Input() listCV:cv[];
-  @Output() onCVItemClick= new EventEmitter<any>();
-  selectedIndex: any = 1; //TODO: initialice with the active cv from db
+  @Input() listCV: CV[];
+  @Output() onCVItemClick = new EventEmitter<any>();
+  selectedIndex: any = 1; // TODO: initialice with the active cv from db
 
   constructor() { }
 
   ngOnInit() {
-    
-      this.selectedIndex = this.listCV.find(function (item) { return item.active === true; }).id;
-   
+
+      this.selectedIndex = this.listCV.find(function(item) { return item.active === true; }).id;
+
   }
-  onCVViewDisplay(selectedCVItem){
+  onCVViewDisplay(selectedCVItem) {
     this.onCVItemClick.emit(selectedCVItem);
     console.log('que pasa');
-    
+
   }
   setIndex(index: number) {
    this.selectedIndex = index;

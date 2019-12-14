@@ -7,14 +7,14 @@ import { Job } from 'src/app/common/models/job-model';
   styleUrls: ['./job-list.component.css']
 })
 export class JobListComponent implements OnInit {
-  @Input() jobs:Job[];
+  @Input() jobs: Job[];
   @Input() displayEditDeleteButton: boolean;
-  @Output() onJobItemClick= new EventEmitter<any>();
+  @Output() jobItemClick = new EventEmitter<any>();
   constructor() { }
 
   ngOnInit() {
   }
-  onJobViewDisplay(selectedJobItem){
-    this.onJobItemClick.emit(selectedJobItem);
+  onJobViewDisplay(selectedJobItem) {
+    this.jobItemClick.emit(selectedJobItem);
   }
 }

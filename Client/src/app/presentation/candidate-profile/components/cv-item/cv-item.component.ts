@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output } from '@angular/core';
-import { cv } from 'src/app/common/models/cv-model';
+import { CV } from 'src/app/common/models/cv-model';
 
 @Component({
   selector: 'app-cv-item',
@@ -7,11 +7,11 @@ import { cv } from 'src/app/common/models/cv-model';
   styleUrls: ['./cv-item.component.css']
 })
 export class CvItemComponent implements OnInit {
-  @Output() @Input() cv: cv;  
+  @Output() @Input() cv: CV;
   constructor() { }
-  
+
   ngOnInit() {
   }
- 
-  
+
+
 }

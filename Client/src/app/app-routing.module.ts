@@ -12,12 +12,12 @@ import { ContactUsComponent } from './presentation/contact-us/contact-us.compone
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
-  { path: 'login', component: LoginComponent }, 
+  { path: 'login', component: LoginComponent },
   { path: 'about', component: AboutUsComponent },
   { path: 'jobOffers', component: JobOffersComponent },
   { path: 'candidateProfile', component: CandidateProfileComponent },
-  {path:'companyProfile', component:CompanyProfileComponent},
-  {path:'contactUs', component:ContactUsComponent},
+  {path: 'companyProfile', component: CompanyProfileComponent},
+  {path: 'contactUs', component: ContactUsComponent},
   { path: '**', redirectTo: 'home' }
 ];
 

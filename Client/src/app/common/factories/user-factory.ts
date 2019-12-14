@@ -1,15 +1,15 @@
-import { UserType, Guest, Candidate, Company, User } from "../models/user-model";
+import { UserType, Guest, Candidate, Company, User } from '../models/user-model';
 
 export const createDefaultGuest = () => {
   return {
     type: UserType.Guest
   } as Guest;
-}
+};
 
 export const createDefaultUser = () => {
   return {
   } as User;
-}
+};
 
 export const createDefaultCandidate = (): Candidate => {
   return {
@@ -19,8 +19,8 @@ export const createDefaultCandidate = (): Candidate => {
     psw: '',
     type: UserType.Candidate,
     cvList: []
-  }
-}
+  };
+};
 
 export const createDefaultCompany = (): Company => {
   return {
@@ -29,5 +29,5 @@ export const createDefaultCompany = (): Company => {
     psw: '',
     type: UserType.Company,
     jobOffersList: []
-  }
-}
+  };
+};
