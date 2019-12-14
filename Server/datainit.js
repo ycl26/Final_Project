@@ -1,49 +1,70 @@
-
 // step 1 : Inject the mongoose module and establish connection
-var mongoose = require('mongoose'),
-	dbname = "Assignment3";
+const mongoose = require('mongoose'),
+  dbname = 'FinalProject';
+const Company = require('./models/company'); // Model object
+const Candidate = require('./models/candidate'); // Model object
 
-mongoose.connect("mongodb://localhost:27017/" + dbname);
-var db = mongoose.connection;
+mongoose.connect('mongodb://localhost:27017/' + dbname);
+const db = mongoose.connection;
 
 // step 2 : Wait for the connection response, 
-db.on("error", console.error); // If there is an error in connectivity
-db.once("open", insertProducts); // If the connections to the mongo DB was succeeded. 
+db.on('error', console.error); // If there is an error in connectivity
+db.once('open', () => {
+  deleteCandidates();
+  insertCandidates();
+
+  deleteCompanies();
+  insertCompanies();
+}); // If the connections to the mongo DB was succeeded.
 
 // step 3: Create the model with blueprint of the data to be stored in the DB
 
-// Here 'Property' is the collection (table) name 
-var Product = mongoose.model("Property", {
-		
-    UsertFirstName: String,
-    UserLastName: String,
-    UserEmail: String,  
-    Password: String
+function deleteCandidates() {
+  Candidate.collection.deleteMany({})
 }
 
-});
+function insertCandidates() {
+  Candidate.collection.insertMany([
+    {
+      firstName: 'Yulien',
+      lastName: 'Cabrera',
+      userEmail: 'yulienc@myproject.com',
+      password: 'yulien'
+    },
+    {
+      firstName: 'a',
+      lastName: 'a',
+      userEmail: 'a',
+      password: 'a'
+    },
+    {
+      firstName: 'b',
+      lastName: 'b',
+      userEmail: 'b',
+      password: 'b'
+    },
+  ]);
+}
 
-/*function deleteProducts(){
-	Product.remove({}, function(err){
-		if(err) console.log(err);
-		insertProducts();
-	});
-	
-}*/
-
-function insertProducts(){
-
-	var products = new Product({
-		UsertFirstName: "Yulien",
-		UserLastName: "Cabrera",
-		UserEmail: "yulienc@myproject.com",  
-		Password: "yulien"
-	});	
-
-	// To store the data using model object
-	products.save(function(err){
-		console.log("Data storeed into the Mongo DB");
-		if(err) console.log(err);
-	});
-
+function deleteCompanies() {
+  Company.collection.deleteMany({})
+}
+function insertCompanies() {
+  Company.collection.insertMany([
+    {
+      companyName: 'A',
+      userEmail: 'A',
+      password: 'A'
+    },
+    {
+      companyName: 'B',
+      userEmail: 'B',
+      password: 'B'
+    },
+    {
+      companyName: 'C',
+      userEmail: 'C',
+      password: 'C'
+    },
+  ]);
 }
