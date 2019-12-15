@@ -103,7 +103,7 @@ export class LoginComponent implements OnInit {
   }
 
   handleLogin() {
-      this.userService.login(this.user.email, this.user.psw).subscribe((userOrError) => {
+      this.userService.login(this.user.userEmail, this.user.psw).subscribe((userOrError) => {
         switch (userOrError.type) {
           case UserType.Candidate:
             this.routerService.navigate(['jobOffers']); break;

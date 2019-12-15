@@ -4,14 +4,9 @@ import {Subject} from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class LogService extends Subject<{ message: string }> {
+export class EventService extends Subject<{type: string, payload: any}> {
 
-  log(message) {
-    console.groupCollapsed(message);
-    // tslint:disable-next-line:no-console
-    console.trace();
-    console.groupEnd();
-    // notify
-    this.next(message);
+  dispatch(event: {type: string, payload: any}) {
+    this.next(event);
   }
 }

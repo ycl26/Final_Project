@@ -5,26 +5,10 @@ import {Candidate, Company, UserType, ActiveUser} from '../models/user-model';
 import {createDefaultGuest} from '../factories/user-factory';
 import {HttpClient, HttpResponse} from '@angular/common/http';
 import {map, tap} from 'rxjs/operators';
-
-const apiUrl = 'http://localhost:3000/api';
+import {handleResponse} from '../utils/http-utils';
+import {apiUrl} from '../utils/constants';
 
 type URL = string;
-
-const handleResponse = (response: HttpResponse<any>) => {
-  if (response.status === 200) {
-    return response.body && (response.body as any).data as any;
-  }
-  if (response.status === 500) {
-    return {
-      type: 'Error',
-      errorMessage: response.body && (response.body as any).errorMessage
-    } as Error;
-  }
-  return {
-    type: 'Error',
-    errorMessage: 'server error. contact support'
-  } as Error;
-};
 
 export class Error {
   type: 'Error';
@@ -49,6 +33,7 @@ export class UserService {
   _getCurrentAuthenticatedUser() {
     const result$ = this.httpClient.get(`${apiUrl}/userinfo`, {observe: 'response', withCredentials: true});
     return result$.pipe(
+      map(response => response.body && (response.body as any).data),
       tap((authenticatedUser) => {
         // maybe check for schema
         if (authenticatedUser) {

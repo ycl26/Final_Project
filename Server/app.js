@@ -35,6 +35,7 @@ mongoose.connect('mongodb://localhost:27017/FinalProject');
 // Routes set up
 const router 	= express.Router();
 const usersController = require('./controllers/api/users');
+import * as cvController from './controllers/api/CVs';
 
 // Get all listings available.
 router.post('/api/login',usersController.onUserLogin); 
@@ -43,6 +44,8 @@ router.get('/api/userinfo',usersController.onUserinfo);
 router.post('/api/signupCandidate', usersController.onCandidateSignUp);
 router.post('/api/signupCompany', usersController.onCompanySignUp);
 router.post('/api/forgotPSW', usersController.onForgotPassword);
+router.post('/api/getCVbyTitle', cvController.findByTitle);
+router.post('/api/createCV', cvController.createCV);
 // Register the routing
 app.use('/', router);
 

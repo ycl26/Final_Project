@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import {HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import {MatDivider} from '@angular/material';
 
@@ -24,6 +24,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CompanyProfileComponent } from './presentation/company-profile/company-profile.component';
 import { ContactUsComponent } from './presentation/contact-us/contact-us.component';
 import { ActiveCvListComponent } from './presentation/company-profile/active-cv-list/active-cv-list.component';
+import {CorsInterceptor} from './common/interceptors/cors.interceptor';
+import {DataResponsePluckInterceptor} from './common/interceptors/data-response-pluck.interceptor';
 
 
 @NgModule({
@@ -54,7 +56,9 @@ import { ActiveCvListComponent } from './presentation/company-profile/active-cv-
     BrowserAnimationsModule ,
 
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: CorsInterceptor, multi: true },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

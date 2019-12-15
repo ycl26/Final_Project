@@ -13,7 +13,7 @@ export const createDefaultUser = () => {
 
 export const createDefaultCandidate = (): Candidate => {
   return {
-    email: '',
+    userEmail: '',
     firstName: '',
     lastName: '',
     psw: '',
@@ -24,7 +24,7 @@ export const createDefaultCandidate = (): Candidate => {
 
 export const createDefaultCompany = (): Company => {
   return {
-    email: '',
+    userEmail: '',
     companyName: '',
     psw: '',
     type: UserType.Company,

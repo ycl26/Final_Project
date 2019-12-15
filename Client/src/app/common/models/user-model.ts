@@ -8,7 +8,7 @@ export enum UserType {
 }
 
 export class User {
-  email: string;
+  userEmail: string;
   psw: string;
   // type:UserType;
 }

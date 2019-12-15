@@ -38,7 +38,7 @@
             </div>
         </div>
         <div class="col-lg-9">
-            <app-cv-view [cv]='CVItemToView' [listCV]="listCV"></app-cv-view>
+            <app-cv-view [cv]='cvItemToView' [listCV]="listCV"></app-cv-view>
         </div>
     </div>
 </div>
@@ -73,7 +73,7 @@
             </div>
             <div class="modal-footer">
                 <button class="btn btn-success" data-toggle="modal" data-target="#modal1">Cancel</button>
-                <button class="btn btn-success" data-toggle="modal" data-target="#modal1">Add</button>
+                <button class="btn btn-success" data-toggle="modal" data-target="#modal1" (click)="submitCV()">Add</button>
             </div>
         </div>
     </div>
