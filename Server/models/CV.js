@@ -3,6 +3,7 @@ import * as cvUtils from '../utils/cv';
 import * as candidateUtils from '../utils/candidate';
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
+//TODO
 // read https://stackoverflow.com/questions/34985846/mongoose-document-references-with-a-one-to-many-relationship
 const cvSchema = Schema({
   id: Number,
