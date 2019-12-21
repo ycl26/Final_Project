@@ -11,7 +11,7 @@ import { from } from 'rxjs';
 export class CvListComponent implements OnInit {
   @Input() listCV: CV[];
   @Output() onCVItemClick = new EventEmitter<any>();
-  selectedIndex: any = 1; // TODO: initialice with the active cv from db
+  selectedIndex: any = 1; 
 
   constructor() { }
 

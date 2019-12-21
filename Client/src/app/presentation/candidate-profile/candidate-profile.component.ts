@@ -65,7 +65,7 @@ export class CandidateProfileComponent extends AbstractForm implements OnInit {
       languages: this.languages,
       userEmail: this.userEmail
     }).subscribe((cv) => {
-      // todo if everything ok then close the dialog
+      // TODO if everything ok then close the dialog
       console.log(cv);
       // this.listCV = cv.candidate.CVs
     });
