@@ -1,10 +1,8 @@
 export class CV {
-    id: number;
+    id: string;
     title: string;
     profile: string;
     workExp: string;
     education: string;
-    active: boolean;
     languages: string;
-
 }

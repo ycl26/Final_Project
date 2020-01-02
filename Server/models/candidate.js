@@ -1,14 +1,14 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 import * as candidateUtils from '../utils/candidate';
-//TODO
+
 // read https://mongoosejs.com/docs/guide.html#selectPopulatedPaths
 const Candidate = mongoose.model('Candidate', {
   firstName: String,
   lastName: String,
   userEmail: String,
   password: String,
-  CVs: [{type: Schema.Types.ObjectId, ref: 'CV'}]
+  CVs: [{ type: Schema.Types.ObjectId, ref: 'CV' }]
 });
 
 export const findById = (id) => Candidate
@@ -17,24 +17,40 @@ export const findById = (id) => Candidate
 
 export const findByEmail = (userEmail, shouldPopulateCVs) => {
   const result = Candidate
-    .findOne({userEmail});
+    .findOne({ userEmail });
   return shouldPopulateCVs
     ? result.populate('CVs')
     : result;
 };
 
+export const addCV = (userEmail, newCv) => {
+  return new Promise((resolve, reject) => {
+    Candidate.findOneAndUpdate({ userEmail },
+    {
+      "$push": { "CVs": newCv._id }
+    },
+    { "new": true, "upsert": true },
+    function (err, foundCandidate) {
+      if (err) {
+        reject(err);
+      }
+      resolve(candidateUtils.toPlainObject(foundCandidate));
+    });
+  });
+};
+
 export const __findByUserEmailAndPassword = (userEmail, password) => {
   return Candidate
-    .findOne({userEmail, password})
+    .findOne({ userEmail, password })
     .then((candidate) => ({
-      ... candidateUtils.toPlainObject(candidate),
-      id: candidate._id
+      ...candidateUtils.toPlainObject(candidate),
+      id: candidate.id
     }));
 };
 
 export const __getPasswordByUserEmail = (userEmail) => {
   return Candidate
-    .findOne({userEmail})
+    .findOne({ userEmail })
     .then((candidate) => candidate.password);
 };
 

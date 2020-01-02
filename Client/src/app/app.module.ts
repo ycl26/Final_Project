@@ -23,9 +23,10 @@ import { CvViewComponent } from './presentation/candidate-profile/components/cv-
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CompanyProfileComponent } from './presentation/company-profile/company-profile.component';
 import { ContactUsComponent } from './presentation/contact-us/contact-us.component';
-import { ActiveCvListComponent } from './presentation/company-profile/active-cv-list/active-cv-list.component';
 import {CorsInterceptor} from './common/interceptors/cors.interceptor';
-import {DataResponsePluckInterceptor} from './common/interceptors/data-response-pluck.interceptor';
+import { CvModalComponent } from './presentation/candidate-profile/components/cv-modal/cv-modal.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { CvDeleteConfirmComponent } from './presentation/candidate-profile/components/cv-delete-confirm/cv-delete-confirm.component';
 
 
 @NgModule({
@@ -45,8 +46,8 @@ import {DataResponsePluckInterceptor} from './common/interceptors/data-response-
     CompanyProfileComponent,
     MatDivider,
     ContactUsComponent,
-    ActiveCvListComponent,
-
+    CvModalComponent,
+    CvDeleteConfirmComponent,
   ],
   imports: [
     BrowserModule,
@@ -54,7 +55,11 @@ import {DataResponsePluckInterceptor} from './common/interceptors/data-response-
     AppRoutingModule,
     FormsModule,
     BrowserAnimationsModule ,
-
+    NgbModule,
+  ],
+  entryComponents : [
+    CvModalComponent,
+    CvDeleteConfirmComponent,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: CorsInterceptor, multi: true },

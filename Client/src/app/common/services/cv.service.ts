@@ -1,9 +1,10 @@
-import {Injectable} from '@angular/core';
-import {HttpClient, HttpResponse} from '@angular/common/http';
-import {map} from 'rxjs/operators';
-import {Error} from './user.service';
-import {handleResponse} from '../utils/http-utils';
-import {apiUrl} from '../utils/constants';
+import { Injectable } from '@angular/core';
+import { HttpClient, HttpResponse } from '@angular/common/http';
+import { map } from 'rxjs/operators';
+import { Error } from './user.service';
+import { handleResponse } from '../utils/http-utils';
+import { apiUrl } from '../utils/constants';
+import { CV } from '../models/cv-model';
 
 
 @Injectable({
@@ -14,11 +15,39 @@ export class CvService {
   constructor(private httpClient: HttpClient) {
   }
 
-  createCV(cv) {
-    const result$ = this.httpClient.post(`${apiUrl}/createCV` , cv, {observe: 'response', withCredentials: true});
+  upsertCV(cv: CV | {userEmail: string}) {
+    const result$ = this.httpClient.post(`${apiUrl}/cv/upsert`, cv, { observe: 'response', withCredentials: true });
     return result$.pipe(
       map(handleResponse),
-      map((createdCV) => console.log(createdCV))
+    );
+  }
+ 
+  removeCV(id: string) {
+    const result$ = this.httpClient.post(`${apiUrl}/cv/remove`, {id}, { observe: 'response', withCredentials: true });
+    return result$.pipe(
+      map(handleResponse),
+    );
+  }
+
+  getListCV(userEmail: string) {
+    const result$ = this.httpClient.get(`${apiUrl}/candidate/cvs`, {
+      params: { userEmail },
+      observe: 'response',
+      withCredentials: true
+    });
+    return result$.pipe(
+      map(handleResponse),
+    );
+  }
+
+  findByTitle(title: string) {
+    const result$ = this.httpClient.get(`${apiUrl}/cv/findbytitle`, {
+      params: { title },
+      observe: 'response',
+      withCredentials: true
+    });
+    return result$.pipe(
+      map(handleResponse),
     );
   }
 }

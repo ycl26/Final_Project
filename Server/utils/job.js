@@ -1,4 +1,4 @@
-export const toPlainObject = (job, company) => {
+export const toPlainObject = (job) => {
   return {
     title: job.title,
     date: job.date,
@@ -6,6 +6,5 @@ export const toPlainObject = (job, company) => {
     type: job.type,
     companyLogo: job.companyLogo,
     companyName: job.companyName,
-    company: company
   };
 };

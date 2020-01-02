@@ -1,7 +1,8 @@
 import * as cvModel from "../../models/CV"
 
-export function createCV(req, res) {
-  cvModel.createCV({
+export function upsertCV(req, res) {
+  cvModel.upsertCV({
+    id: req.body.id,
     title: req.body.title,
     profile: req.body.profile,
     workExp: req.body.workExp,
@@ -13,14 +14,27 @@ export function createCV(req, res) {
     res.json({
       data: cv
     });
-  })
-  //   .catch((error) => {
-  //   res.status(500).json({ error });
-  // });
+  },
+  (error) => {
+    res.status(500).json({ error });
+  });
+}
+
+export function removeCV(req, res) {
+  cvModel.removeCV({
+    id: req.body.id,
+  }).then((cv) => {
+    res.json({
+      data: cv
+    });
+  },
+  (error) => {
+    res.status(500).json({ error });
+  });
 }
 
 export function findByTitle(req, res) {
-  cvModel.findByTitle(req.title).then((cv) => {
+  cvModel.findByTitle(req.query.title).then((cv) => {
     res.json({
       data: cv
     });

@@ -5,7 +5,7 @@ export const toPlainObject = (company) => {
   return {
     companyName: company.companyName,
     userEmail: company.userEmail,
-    jobOffers: company.jobOffers.map(jobUtils.toPlainObject),
+    // jobOffers: company.jobOffers && company.jobOffers.map(jobUtils.toPlainObject),
     type: COMPANY,
   };
 };

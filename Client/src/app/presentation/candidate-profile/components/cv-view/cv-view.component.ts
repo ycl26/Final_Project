@@ -1,4 +1,4 @@
-import {Component, OnInit, Input} from '@angular/core';
+import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
 import {CV} from 'src/app/common/models/cv-model';
 import {ActivatedRoute, Router} from '@angular/router';
 import {SearchJobService} from 'src/app/presentation/job-offers/services/search-job.service';
@@ -11,13 +11,10 @@ import {SearchJobService} from 'src/app/presentation/job-offers/services/search-
 })
 export class CvViewComponent implements OnInit {
   @Input() cv: CV;
-  @Input() listCV: CV[];
-  editMode: boolean;
+  @Output() edit = new EventEmitter();
+  @Output() delete = new EventEmitter();
 
   constructor(
-    private route: ActivatedRoute,
-    private searchJobService: SearchJobService,
-    private routerService: Router
   ) {
   }
 
@@ -25,18 +22,10 @@ export class CvViewComponent implements OnInit {
   }
 
   onEditClick() {
-    this.editMode = true;
+    this.edit.emit();
   }
 
   onDeleteClick() {
-    this.listCV.splice(this.cv.id, 1);
-  }
-
-  onSaveClick() {
-    this.editMode = false;
-  }
-
-  onCancelClick() {
-    this.editMode = false;
+   this.delete.emit();
   }
 }

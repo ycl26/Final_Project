@@ -1,5 +1,5 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import {MatDivider} from '@angular/material';
+import { Component, OnInit, Input, Output, EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
+import { MatDivider } from '@angular/material';
 import { CV } from 'src/app/common/models/cv-model';
 import { from } from 'rxjs';
 
@@ -8,26 +8,31 @@ import { from } from 'rxjs';
   templateUrl: './cv-list.component.html',
   styleUrls: ['./cv-list.component.css']
 })
-export class CvListComponent implements OnInit {
+export class CvListComponent implements OnInit, OnChanges {
+  @Input() selectedCV: CV;
   @Input() listCV: CV[];
-  @Output() onCVItemClick = new EventEmitter<any>();
-  selectedIndex: any = 1; 
+  @Output() selected = new EventEmitter<any>();
+  selectedIndex = 0; // TODO: initialice with the active cv from db
 
   constructor() { }
 
   ngOnInit() {
-
-      this.selectedIndex = this.listCV.find(function(item) { return item.active === true; }).id;
-
   }
-  onCVViewDisplay(selectedCVItem) {
-    this.onCVItemClick.emit(selectedCVItem);
-    console.log('que pasa');
 
+  ngOnChanges(changes: SimpleChanges): void {
+    const selectedCVChanges = changes['selectedCV'];
+    if(selectedCVChanges && this.selectedIndex !== selectedCVChanges.currentValue) {
+      const cv = selectedCVChanges.currentValue;
+      this.selectedIndex = this.listCV.findIndex((item) => item.id === cv.id);
+    }
+  }
+
+  onCVViewDisplay(selectedCVItem) {
+    this.selected.emit(selectedCVItem);
   }
   setIndex(index: number) {
-   this.selectedIndex = index;
- }
+    this.selectedIndex = index;
+  }
 }
 
 

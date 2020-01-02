@@ -1,0 +1,30 @@
+<div class="modal-header">
+    <h3 class="modal-title text-dark">{{cv.title}}</h3>
+    <button data-dismiss="modal" class="close">&times;</button>
+</div>
+<div class="modal-body">
+    <div class="col form-group">
+        <label for="CVTitle"> CV Title</label>
+        <input name="CVTitle" id="CVTitle" class="form-control" [(ngModel)]="cv.title">
+    </div>
+    <div class="col form-group">
+        <label for="CVProfile"> Profile</label>
+        <textarea name="CVProfile" id="CVProfile" class="form-control"  [(ngModel)]="cv.profile"></textarea>
+    </div>
+    <div class="col form-group">
+        <label for="CVworkE"> Work Experience</label>
+        <textarea name="CVworkE" id="CVworkE" class="form-control"  [(ngModel)]="cv.workExp"></textarea>
+    </div>
+    <div class="col form-group">
+        <label for="CVEducation"> Education</label>
+        <textarea name="CVEducation" id="CVEducation" class="form-control"  [(ngModel)]="cv.education"></textarea>
+    </div>
+    <div class="col form-group">
+        <label for="CVLanguages"> Languages</label>
+        <textarea name="CVLanguages" id="CVLanguages" class="form-control"  [(ngModel)]="cv.languages"></textarea>
+    </div>
+</div>
+<div class="modal-footer">
+    <button class="btn btn-success" data-toggle="modal" (click)="activeModal.dismiss('Cancel click')">Cancel</button>
+    <button class="btn btn-success" data-toggle="modal" (click)="activeModal.close(cv)">Submit</button>
+</div>

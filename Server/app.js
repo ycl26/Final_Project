@@ -36,6 +36,7 @@ mongoose.connect('mongodb://localhost:27017/FinalProject');
 const router 	= express.Router();
 const usersController = require('./controllers/api/users');
 import * as cvController from './controllers/api/CVs';
+import * as candidateController from './controllers/api/candidate';
 
 // Get all listings available.
 router.post('/api/login',usersController.onUserLogin); 
@@ -44,24 +45,13 @@ router.get('/api/userinfo',usersController.onUserinfo);
 router.post('/api/signupCandidate', usersController.onCandidateSignUp);
 router.post('/api/signupCompany', usersController.onCompanySignUp);
 router.post('/api/forgotPSW', usersController.onForgotPassword);
-router.post('/api/getCVbyTitle', cvController.findByTitle);
-router.post('/api/createCV', cvController.createCV);
+router.get('/api/userinfo',usersController.onUserinfo);
+
+router.post('/api/cv/upsert', cvController.upsertCV);
+router.post('/api/cv/remove', cvController.removeCV);
+router.get('/api/cv/findbytitle', cvController.findByTitle);
+
+router.get('/api/candidate/cvs', candidateController.getCVs);
+
 // Register the routing
 app.use('/', router);
-
-
-
-function customCorsMiddleware(host) {
-	return (req, res, next) => {
-		res.header("Access-Control-Allow-Origin", host);
-		res.header(
-			"Access-Control-Allow-Headers",
-			"Origin, X-Requested-With, Content-Type, Accept, Authorization"
-		);
-		if (req.method === 'OPTIONS') {
-			res.header('Access-Control-Allow-Methods', 'PUT, POST, PATCH, DELETE, GET');
-			return res.status(200).json({});
-		}
-		next();
-	}
-}

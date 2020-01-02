@@ -6,7 +6,7 @@ export const toPlainObject = (candidate) => {
     firstName: candidate.firstName,
     lastName: candidate.lastName,
     userEmail: candidate.userEmail,
-    CVs: candidate.CVs.map(cvUtil.toPlainObject),
+    // CVs: candidate.CVs && candidate.CVs.map(cvUtil.toPlainObject),
     type: CANDIDATE,
   };
 };

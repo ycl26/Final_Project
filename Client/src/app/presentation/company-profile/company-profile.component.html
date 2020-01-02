@@ -32,9 +32,13 @@
             </div>
             <div class="card">
                 <div class="card-body">
-                    <input id="inputSearch" placeholder="Candidate search">
-                    <button id="searchCandidatebutton" class="btn btn-info btn-text-light"> search</button>
-                    <app-active-cv-list></app-active-cv-list>
+                    <input id="inputSearch" placeholder="Candidate search" [(ngModel)]="cvTitleForSearch">
+                    <button id="searchCandidatebutton" class="btn btn-info btn-text-light" (click)="onSearchCVByTitle(cvTitleForSearch)"> search</button>
+                    <app-cv-list
+                        (selected)='setSelectedCVViewModel($event)'
+                        [selectedCV]="selectedCV"
+                        [listCV]="listCVs"
+                    ></app-cv-list>
                 </div>
             </div>
         </div>
