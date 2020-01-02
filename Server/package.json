@@ -10,7 +10,7 @@
         "cookies": "^0.8.0",
         "cors": "^2.8.1",
         "express": "^4.17.1",
-        "mongoose": "~4.0.0",
+        "mongoose": "~5.7.5",
         "nodemailer": "^4.4.2",
         "nodemailer-smtp-transport": "^2.7.4"
     },
