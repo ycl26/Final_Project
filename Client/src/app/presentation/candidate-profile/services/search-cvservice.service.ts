@@ -46,7 +46,7 @@ export class SearchCVServiceService {
       },
       {
         id: i++,
-        title: 'quitaNieve',
+        title: 'programmer',
         profile: 'here goes your introduction',
         workExp: 'this is the description of the cv',
         education: 'bruto muy bruto',

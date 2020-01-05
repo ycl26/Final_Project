@@ -10,7 +10,7 @@ import {SearchJobService} from 'src/app/presentation/job-offers/services/search-
   styleUrls: ['./cv-view.component.css']
 })
 export class CvViewComponent implements OnInit {
-  @Input() cv: CV;
+  @Input() cv: CV = {} as any;
   @Output() edit = new EventEmitter();
   @Output() delete = new EventEmitter();
 

@@ -42,10 +42,7 @@ export const addCV = (userEmail, newCv) => {
 export const __findByUserEmailAndPassword = (userEmail, password) => {
   return Candidate
     .findOne({ userEmail, password })
-    .then((candidate) => ({
-      ...candidateUtils.toPlainObject(candidate),
-      id: candidate.id
-    }));
+    .then(candidateUtils.toPlainObject);
 };
 
 export const __getPasswordByUserEmail = (userEmail) => {

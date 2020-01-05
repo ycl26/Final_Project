@@ -26,10 +26,7 @@ export const findByUserEmail = (userEmail, shouldPopulateJobOffers) => {
 export const __findUserEmailAndPassword = (userEmail, password) => {
   return Company
     .findOne({userEmail, password})
-    .then((company) => ({
-      ...companyUtils.toPlainObject(company),
-      id: company._id
-    }));
+    .then(companyUtils.toPlainObject);
 };
 
 export const __getPasswordByUserEmail = (userEmail) => {

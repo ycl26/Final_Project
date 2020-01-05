@@ -1,6 +1,6 @@
 export const toPlainObject = (cv) => {
   return {
-    id: cv._id,
+    id: cv.id || cv._id.toString(),
     title: cv.title,
     profile: cv.profile,
     workExp: cv.workExp,

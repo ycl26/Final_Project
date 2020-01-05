@@ -10,6 +10,8 @@ import * as $ from 'jquery';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { CvModalComponent } from './components/cv-modal/cv-modal.component';
 import { CvDeleteConfirmComponent } from './components/cv-delete-confirm/cv-delete-confirm.component';
+
+const DEFAULT_CV: any = {};
 @Component({
   selector: 'app-candidate-profile',
   templateUrl: './candidate-profile.component.html',
@@ -19,7 +21,7 @@ export class CandidateProfileComponent extends AbstractForm implements OnInit {
   user: Candidate = {} as any;
   listCV: CV[] = [];
 
-  selectedCV: CV = {} as any;
+  selectedCV: CV = DEFAULT_CV;
   newOrEditCV: CV = {} as any;
   @ViewChild("modal", { static: true }) modal: ElementRef;
 
@@ -131,7 +133,7 @@ export class CandidateProfileComponent extends AbstractForm implements OnInit {
   }
 
   selectFirstCVViewModel(listCV) {
-    const firstCV = listCV[0];
+    const firstCV = listCV[0] || DEFAULT_CV;
     this.setSelectedCVViewModel(firstCV);
   }
 

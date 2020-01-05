@@ -35,12 +35,12 @@ export const getAllByUserEmail = (userEmail) => {
 };
 
 export function upsertCV(cv) {
-  const id = cv.id;
+  const id = mongoose.Types.ObjectId(cv.id);
   return new Promise((resolve, reject) => {
     CV.findByIdAndUpdate(
       id,
       {
-        "$set": {
+        $set: {
           title: cv.title,
           profile: cv.profile,
           workExp: cv.workExp,
@@ -49,10 +49,11 @@ export function upsertCV(cv) {
           userEmail: cv.userEmail
         }
       },
-      { "new": true, "upsert": true },
+      { new: true, upsert: true },
       function (err, newOrUpdatedCV) {
         if (err) {
           reject(err);
+          return;
         }
         resolve(cvUtils.toPlainObject(newOrUpdatedCV));
       });
@@ -60,13 +61,14 @@ export function upsertCV(cv) {
 }
 
 export function removeCV(cv) {
-  const id = cv.id;
+  const id = mongoose.Types.ObjectId(cv.id);
   return new Promise((resolve, reject) => {
     CV.findByIdAndRemove(
       id,
       function (err, removedCV) {
         if (err) {
           reject(err);
+          return
         }
         resolve(cvUtils.toPlainObject(removedCV));
       });

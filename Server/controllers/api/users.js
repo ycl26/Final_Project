@@ -97,12 +97,18 @@ function doForgotPassword(req, res) {
 function doCompanySignUp(req, res, next) {
   const company = {
     companyName: req.body.companyName,
-    userEmail: req.body.email,
+    userEmail: req.body.userEmail,
     password: req.body.psw,
   };
   companyModel.createCompany(company)
-    .then(data =>
-      res.send({data})
+    .then(createdCompany => {
+      const id = createdCompany.id;
+        delete createdCompany.id;
+        setCookies(req, res, AUTHENTICATION, id);
+        res.send({
+          data: createdCompany
+        });
+    }
     )
     .catch((err) =>
       res.status(500).send({
@@ -115,18 +121,22 @@ function doCandidateSignUp(req, res, next) {
   const candidate = {
     firstName: req.body.firstName,
     lastName: req.body.lastName,
-    userEmail: req.body.email,
+    userEmail: req.body.userEmail,
     password: req.body.psw,
   };
   candidateModel.createCandidate(candidate)
-    .then(data =>
-      res.send({data})
-    )
-    .catch((err) =>
-      res.status(500).send({
+    .then(createdCandidate => {
+      const id = createdCandidate.id;
+      delete createdCandidate.id;
+      setCookies(req, res, AUTHENTICATION, id);
+      res.send({
+        data: createdCandidate
+      });
+    },
+      (err) => res.status(500).send({
         message: 'Some error occurred while creating the candidate.'
       })
-    );
+    )
 }
 
 
