@@ -11,8 +11,8 @@ const jobSchema = Schema({
   type: String,
   companyLogo: String,
   companyName: String, // ref to Company
+  userEmail: String // Company ref
 });
-
 const Job = mongoose.model('Company', jobSchema);
 
 export const findByTitle = (title, withCandidate) => {
@@ -33,6 +33,7 @@ export function createJobOffer(job) {
     description: job.description,
     type: job.type,
     companyLogo: job.companyLogo,
+    companyName: job.companyName,
     userEmail: job.userEmail,
   });
   return newJob.save().then((createdJob) => {
@@ -41,7 +42,7 @@ export function createJobOffer(job) {
         if (foundCompany) {
           // The below two lines will add the newly saved review's
           // ObjectID to the the User's reviews array field
-          foundCompany.CVs.push(createdJob);
+          foundCompany.Jobs.push(createdJob);
           foundCompany.save();
           return jobUtils.toPlainObject(
             createdJob,
@@ -50,4 +51,55 @@ export function createJobOffer(job) {
         }
       });
   });
+
+  export const getAllByUserEmail = (userEmail) => {
+    return Job
+      .find({ userEmail })
+      .then((foundJobs) => {
+        const cvs = foundJobs && foundJobs.map(jobUtils.toPlainObject);
+        return job;
+      });
+  };
+  
+  export function upsertJob(job) {
+    const id = mongoose.Types.ObjectId(job.id);
+    return new Promise((resolve, reject) => {
+      Job.findByIdAndUpdate(
+        id,
+        {
+          $set: {
+            title: job.title,
+            date: job.date,
+            description: job.description,
+            type: job.type,
+            companyLogo: job.companyLogo,
+            // companyName: job.companyName, Not needed
+            userEmail: job.userEmail,
+          }
+        },
+        { new: true, upsert: true },
+        function (err, newOrUpdatedJob) {
+          if (err) {
+            reject(err);
+            return;
+          }
+          resolve(jobUtils.toPlainObject(newOrUpdatedJob));
+        });
+    });
+  }
+  
+  export function removeJob(job) {
+    const id = mongoose.Types.ObjectId(job.id);
+    return new Promise((resolve, reject) => {
+      Job.findByIdAndRemove(
+        id,
+        function (err, removeJob) {
+          if (err) {
+            reject(err);
+            return
+          }
+          resolve(JobUtils.toPlainObject(removeJob));
+        });
+    });
+  }
 }

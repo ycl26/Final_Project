@@ -1,0 +1,27 @@
+<div class="modal-header">
+    <h3 class="modal-title text-dark">{{job.title}}</h3>
+    <button data-dismiss="modal" class="close">&times;</button>
+</div>
+<div class="modal-body">
+    <div class="col form-group">
+        <label for="JobTitle"> Job Title</label>
+        <input name="JobTitle" id="JobTitle" class="form-control" [(ngModel)]="job.title">
+    </div>
+    <div class="col form-group">
+        <label for="JobDescription"> Description</label>
+        <textarea name="JobDescription" id="JobDescription" class="form-control"  [(ngModel)]="job.description"></textarea>
+    </div>
+    <div class="col form-group">
+        <label for="JobType">Job Type</label>
+        <textarea name="JobType" id="JobType" class="form-control"  [(ngModel)]="job.type"></textarea>
+    </div>
+    <div class="col form-group">
+        <label for="JobDate"> Date</label>
+        <textarea name="JobDate" id="JobDate" class="form-control"  [(ngModel)]="job.date"></textarea>
+    </div>    
+</div>
+<div class="modal-footer">
+    <button class="btn btn-success" data-toggle="modal" (click)="activeModal.dismiss('Cancel click')">Cancel</button>
+    <button class="btn btn-success" data-toggle="modal" (click)="activeModal.close(job)">Submit</button>
+</div>
+

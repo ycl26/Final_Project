@@ -27,6 +27,8 @@ import {CorsInterceptor} from './common/interceptors/cors.interceptor';
 import { CvModalComponent } from './presentation/candidate-profile/components/cv-modal/cv-modal.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CvDeleteConfirmComponent } from './presentation/candidate-profile/components/cv-delete-confirm/cv-delete-confirm.component';
+import { JobModalComponent } from './presentation/job-offers/job-modal/job-modal.component';
+import { JobDeleteConfirmComponent } from './presentation/job-offers/components/job-delete-confirm/job-delete-confirm.component';
 
 
 @NgModule({
@@ -48,6 +50,8 @@ import { CvDeleteConfirmComponent } from './presentation/candidate-profile/compo
     ContactUsComponent,
     CvModalComponent,
     CvDeleteConfirmComponent,
+    JobModalComponent,
+    JobDeleteConfirmComponent,
   ],
   imports: [
     BrowserModule,

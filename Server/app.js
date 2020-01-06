@@ -50,8 +50,12 @@ router.get('/api/userinfo',usersController.onUserinfo);
 router.post('/api/cv/upsert', cvController.upsertCV);
 router.post('/api/cv/remove', cvController.removeCV);
 router.get('/api/cv/findbytitle', cvController.findByTitle);
-
 router.get('/api/candidate/cvs', candidateController.getCVs);
+
+router.post('/api/job/upsert', jobController.upsertJob);
+router.post('/api/job/remove', jobController.removeJob);
+router.get('/api/job/findbytitle', jobController.findByTitle);
+router.get('/api/company/jobs', companyController.getJobs);
 
 // Register the routing
 app.use('/', router);

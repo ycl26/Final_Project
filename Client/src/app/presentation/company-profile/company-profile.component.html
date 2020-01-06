@@ -3,12 +3,12 @@
         <div class="col-lg-3">
             <div class="card">
                 <h5 class=" card-header card-text text-info">
-                    <img id="compLogo" src="./assets/img/logo.png" class="card-img-top img-responsive"> Company Name
+                    <img id="compLogo" src="./assets/img/logo.png" class="card-img-top img-responsive">{{user.companyName}}
                 </h5>
                 <div class="card-body">
                     <ul id="home" class="list-group list-group-flush">
                         <li class="list-group-item">
-                            <h6 class="card-text text-info"><i class="fas fa-envelope"></i> Email</h6>
+                            <h6 class="card-text text-info"><i class="fas fa-envelope"></i> {{user.userEmail}}</h6>
                             <h6 class="card-text text-info"><i class="fas fa-id-card"></i> Address</h6>
                             <h6 class="card-text text-info"><i class="fas fa-id-card"></i> Telephone</h6>
                     </ul>
@@ -48,61 +48,19 @@
                     <h5><span class="card-text text-info" data-toggle="collapse" href="#collapse2"><i
                                 class="fas fa-list"></i> Posted Jobs</span></h5>
                     <button id="createJobbutton" class="bg-info text-light" data-toggle="modal"
-                        data-target="#modalAddJob">
+                        (click)="onShowAddEditJobModal(createNewJob())">
                         <i class="far fa-edit"></i>
                         Create</button>                       
-                </div>
-                <div class="row">
-                    <div class="modal fade" id="modalAddJob">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h3 class="modal-title text-dark">{{newJobTitle}}</h3>
-                                    <button data-dismiss="modal" class="close">&times;</button>
-                                </div>
-                                <div class="modal-body">
-                                    <div class="col form-group">
-                                        <label for="jobTitle"> Job Title</label>
-                                        <input name="jobTitle" id="jobTitle" class="form-control"
-                                            [(ngModel)]="newJobTitle">
-                                    </div>
-                                    <div class="col form-group">
-                                        <label for="jobDescription"> Description</label>
-                                        <textarea name="jobDescription" id="jobDescription"
-                                            class="form-control"></textarea>
-                                    </div>
-                                    <div class="col form-group">
-                                        <label for="jobDate"> Date</label>
-                                        <input name="jobDate" id="jobDate" class="form-control">                                       
-                                    </div>
-                                    <div class="col form-group">
-                                        <div>
-                                            <label for="JobType"> Job Type</label>
-                                        </div>
-                                        <div class="btn-group">
-                                            <input id="inputJobtype" type="radio" name="jobtype" value="full">Full-Time
-                                            <input id="inputJobtype" type="radio" name="jobtype" value="part">Part-Time
-                                            <input id="inputJobtype" type="radio" name="jobtype"
-                                                value="contract">Contract
-                                            <input id="inputJobtype" type="radio" name="jobtype"
-                                                value="temporary">Temporary
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="modal-footer">
-                                    <button class="btn btn-success" data-toggle="modal"
-                                        data-target="#modalAddJob">Cancel</button>
-                                    <button class="btn btn-success" data-toggle="modal"
-                                        data-target="#modalAddJob">Add</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                </div>               
 
                 <div class="card-body">
                     <p class="card-text"> here goes the list of jobs of this company</p>
-                    <app-job-offers></app-job-offers>
+                    <app-job-offers 
+                    (selected)='setSelectedJobViewModel($event)'
+                    [selectedJob]="selectedJob"
+                    [jobs]="jobs">
+                </app-job-offers>
+                <!-- passing events to childs for edit, delete, and create -->
                 </div>
             </div>
         </div>
