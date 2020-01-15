@@ -21,16 +21,19 @@ function insertCompanies() {
   companyModel.createCompany({
     companyName: 'A',
     userEmail: 'A',
-    password: 'A'
+    password: 'A',
+    address: 'A',
   });
   companyModel.createCompany({
     companyName: 'B',
     userEmail: 'B',
-    password: 'B'
+    password: 'B',
+    address: 'B',
   });
   companyModel.createCompany({
     companyName: 'C',
     userEmail: 'C',
-    password: 'C'
+    password: 'C',
+    address: 'C',
   });
 }

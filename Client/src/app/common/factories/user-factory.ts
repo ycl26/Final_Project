@@ -26,8 +26,9 @@ export const createDefaultCompany = (): Company => {
   return {
     userEmail: '',
     companyName: '',
+    address: '',
     psw: '',
     type: UserType.Company,
-    jobOffersList: []
+    jobOffersList: [],   
   };
 };

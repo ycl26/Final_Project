@@ -12,52 +12,7 @@
             <button id="deleteJobbutton" class="bg-info text-light">
                 <i class="far fa-trash-alt"></i>
             </button>
-        </div>
-        <div class="row">
-                <div class="modal fade" id="modalEditJob">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h3 class="modal-title text-dark">{{job.title}}</h3>
-                                <button data-dismiss="modal" class="close">&times;</button>
-                            </div>
-                            <div class="modal-body text-info">
-                                <div class="col form-group">
-                                    <label for="jobTitle" >Job Title</label>
-                                    <input name="jobTitle" id="jobTitle" class="form-control"
-                                        [(ngModel)]="job.title">
-                                </div>
-                                <div class="col form-group">
-                                    <label for="jobDescription"> Job Description</label>
-                                    <textarea name="jobDescription" id="jobDescription"
-                                        class="form-control" [(ngModel)]="job.description"> {{job.description}}</textarea>
-                                </div>
-                                <div class="col form-group">
-                                    <label for="jobDate">Job Date</label>
-                                    <input name="jobDate" id="jobDate" class="form-control" [(ngModel)]="job.date">
-                                </div>
-                                <div class="col form-group">
-                                    <div>
-                                        <label for="JobType">Job Type</label>
-                                    </div>
-                                    <div class="btn-group">
-                                        <input id="inputJobtype" type="radio" name="jobtype" value="Full-Time">Full-Time
-                                        <input id="inputJobtype" type="radio" name="jobtype" value="Part-Time">Part-Time
-                                        <input id="inputJobtype" type="radio" name="jobtype" value="Contract">Contract
-                                        <input id="inputJobtype" type="radio" name="jobtype" value="Temporary">Temporary
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="modal-footer">
-                                <button id="SaveCancelbutton" class="btn btn-success" data-toggle="modal"
-                                    data-target="#modalEditJob">Cancel</button>
-                                <button id="SaveCancelbutton"  class="btn btn-success" data-toggle="modal"
-                                    data-target="#modalEditJob">Save</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        </div>        
     </div>
     <div class="card-body text-info">
         <h3 class="card-title">{{job.title}}</h3>

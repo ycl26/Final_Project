@@ -24,6 +24,7 @@ export class Company extends User {
   companyName: string;
   type: UserType.Company;
   jobOffersList: Job[];
+  address: string;
 }
 
 export class Guest extends User {

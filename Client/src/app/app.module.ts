@@ -64,6 +64,8 @@ import { JobDeleteConfirmComponent } from './presentation/job-offers/components/
   entryComponents : [
     CvModalComponent,
     CvDeleteConfirmComponent,
+    JobModalComponent,
+    JobDeleteConfirmComponent,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: CorsInterceptor, multi: true },

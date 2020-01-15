@@ -37,6 +37,9 @@ const router 	= express.Router();
 const usersController = require('./controllers/api/users');
 import * as cvController from './controllers/api/CVs';
 import * as candidateController from './controllers/api/candidate';
+import * as jobController from './controllers/api/jobs';
+import * as companyController from './controllers/api/company';
+
 
 // Get all listings available.
 router.post('/api/login',usersController.onUserLogin); 

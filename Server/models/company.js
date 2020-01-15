@@ -6,6 +6,7 @@ const Company = mongoose.model('Company', {
   companyName: String,
   userEmail: String,
   password: String,
+  address: String,
   jobsOffers: [{type: Schema.Types.ObjectId, ref: 'Job'}]
 });
 
@@ -42,6 +43,7 @@ export const createCompany = (company) => {
     companyName: company.companyName,
     userEmail: company.userEmail,
     password: company.password,
+    address: company.address,
   });
   return newCompany.save()
     .then(companyUtils.toPlainObject);

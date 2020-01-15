@@ -13,7 +13,7 @@ const jobSchema = Schema({
   companyName: String, // ref to Company
   userEmail: String // Company ref
 });
-const Job = mongoose.model('Company', jobSchema);
+const Job = mongoose.model('Job', jobSchema);
 
 export const findByTitle = (title, withCandidate) => {
   // const result = Job
@@ -22,10 +22,18 @@ export const findByTitle = (title, withCandidate) => {
   //   ? result.populate('company') // todo to figure out how
   //   : result;
   return Job
-    .findOne({title})
+    .findOne({ title })
     .then(jobUtils.toPlainObject);
 };
 
+export const getAllByUserEmail = (userEmail) => {
+  return Job
+    .find({ userEmail })
+    .then((foundJobs) => {
+      const cvs = foundJobs && foundJobs.map(jobUtils.toPlainObject);
+      return job;
+    });
+};
 export function createJobOffer(job) {
   const newJob = new Job({
     title: job.title,
@@ -51,55 +59,47 @@ export function createJobOffer(job) {
         }
       });
   });
+}
 
-  export const getAllByUserEmail = (userEmail) => {
-    return Job
-      .find({ userEmail })
-      .then((foundJobs) => {
-        const cvs = foundJobs && foundJobs.map(jobUtils.toPlainObject);
-        return job;
+
+export function upsertJob(job) {
+  const id = mongoose.Types.ObjectId(job.id);
+  return new Promise((resolve, reject) => {
+    Job.findByIdAndUpdate(
+      id,
+      {
+        $set: {
+          title: job.title,
+          date: job.date,
+          description: job.description,
+          type: job.type,
+          companyLogo: job.companyLogo,
+          // companyName: job.companyName, Not needed
+          userEmail: job.userEmail,
+        }
+      },
+      { new: true, upsert: true },
+      function (err, newOrUpdatedJob) {
+        if (err) {
+          reject(err);
+          return;
+        }
+        resolve(jobUtils.toPlainObject(newOrUpdatedJob));
       });
-  };
-  
-  export function upsertJob(job) {
-    const id = mongoose.Types.ObjectId(job.id);
-    return new Promise((resolve, reject) => {
-      Job.findByIdAndUpdate(
-        id,
-        {
-          $set: {
-            title: job.title,
-            date: job.date,
-            description: job.description,
-            type: job.type,
-            companyLogo: job.companyLogo,
-            // companyName: job.companyName, Not needed
-            userEmail: job.userEmail,
-          }
-        },
-        { new: true, upsert: true },
-        function (err, newOrUpdatedJob) {
-          if (err) {
-            reject(err);
-            return;
-          }
-          resolve(jobUtils.toPlainObject(newOrUpdatedJob));
-        });
-    });
-  }
-  
-  export function removeJob(job) {
-    const id = mongoose.Types.ObjectId(job.id);
-    return new Promise((resolve, reject) => {
-      Job.findByIdAndRemove(
-        id,
-        function (err, removeJob) {
-          if (err) {
-            reject(err);
-            return
-          }
-          resolve(JobUtils.toPlainObject(removeJob));
-        });
-    });
-  }
+  });
+}
+
+export function removeJob(job) {
+  const id = mongoose.Types.ObjectId(job.id);
+  return new Promise((resolve, reject) => {
+    Job.findByIdAndRemove(
+      id,
+      function (err, removeJob) {
+        if (err) {
+          reject(err);
+          return
+        }
+        resolve(JobUtils.toPlainObject(removeJob));
+      });
+  });
 }

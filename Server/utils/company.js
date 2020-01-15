@@ -6,6 +6,7 @@ export const toPlainObject = (company) => {
     id: company.id || company._id.toString(),
     companyName: company.companyName,
     userEmail: company.userEmail,
+    address: company.address,
     // jobOffers: company.jobOffers && company.jobOffers.map(jobUtils.toPlainObject),
     type: COMPANY,
   };

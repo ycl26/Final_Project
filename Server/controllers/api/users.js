@@ -98,7 +98,8 @@ function doCompanySignUp(req, res, next) {
   const company = {
     companyName: req.body.companyName,
     userEmail: req.body.userEmail,
-    password: req.body.psw,
+    address: req.body.address,
+    password: req.body.psw,    
   };
   companyModel.createCompany(company)
     .then(createdCompany => {
@@ -108,13 +109,11 @@ function doCompanySignUp(req, res, next) {
         res.send({
           data: createdCompany
         });
-    }
-    )
-    .catch((err) =>
-      res.status(500).send({
+    },
+      (err) => res.status(500).send({
         message: 'Some error occurred while creating the company.'
       })
-    );
+    )
 }
 
 function doCandidateSignUp(req, res, next) {
