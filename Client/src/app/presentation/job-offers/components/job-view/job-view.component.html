@@ -1,22 +1,30 @@
-<div class="card">
+<div class="card" *ngIf="job">
     <div class="card-header bg-info text-light">
         <div class="col-xs-8">
-            <img id="JobCompanyLogo" class="card-img-left" src={{job.companyLogo}}>
+            <img id="JobCompanyLogo" class="card-img-left">
             <h3 id="jobTitletext"><span>{{job.title}}</span></h3>
         </div>
         <div class="col-xs-4">
-         <button class="bg-info text-light" *ngIf="!displayEditDeleteButton" ><i class="fas fa-share-square"></i> Apply</button>
+            <button class="bg-info text-light"  *ngIf="displayEditDeleteButton" (click)="onEditClick()"><i class="far fa-edit"></i>
+                Edit</button>
+                <button class="bg-info text-light"  *ngIf="displayEditDeleteButton" (click)="onDeleteClick()"><i class="far fa-trash-alt"></i>
+                    Delete</button>
+            <button class="bg-info text-light" *ngIf="!displayEditDeleteButton"><i class="fas fa-share-square"></i>
+                Apply</button>
         </div>
     </div>
 
     <div class="card-body text-info">
-        <h3 class="card-title">{{job.title}}</h3>
-        <p class="card-text"> {{job.id}}</p>
+        <h3 class="card-title">{{job.title}}</h3>    
         <p class="card-text"> Job type: {{job.type}}</p>
         <p class="card-text"> {{job.description}}</p>
     </div>
     <div class="card-footer bg-info text-light">
-        <p class="card-text">{{job.date}} <button class="bg-info text-light" *ngIf="!displayEditDeleteButton" ><i class="fas fa-share-square"></i>
+        <p class="card-text">{{job.date}} <button class="bg-info text-light" *ngIf="!displayEditDeleteButton"><i
+                    class="fas fa-share-square"></i>
                 Apply</button>
     </div>
+</div>
+<div *ngIf="!job">
+    Loading ...
 </div>

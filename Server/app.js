@@ -59,6 +59,7 @@ router.post('/api/job/upsert', jobController.upsertJob);
 router.post('/api/job/remove', jobController.removeJob);
 router.get('/api/job/findbytitle', jobController.findByTitle);
 router.get('/api/company/jobs', companyController.getJobs);
+router.get('/api/job/alljobs',jobController.getAllJobs);
 
 // Register the routing
 app.use('/', router);

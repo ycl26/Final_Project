@@ -13,31 +13,25 @@
                             <h6 class="card-text text-info"><i class="fas fa-id-card"></i>  {{user.address}}</h6>                            
                     </ul>
                 </div>
-            </div>
-            <div class="card">
-                <div class="card-header">
-                    <h5 id="aboutUsText"><span class="card-text text-info" data-toggle="collapse" href="#collapse1"><i
-                                class="far fa-question-circle"></i> About us</span> </h5>
-                    <button id="AboutUsButton" class="bg-info text-light" (click)="onEditClick()" *ngIf="!editMode">
-                        <i class="far fa-edit"></i>
-                        Edit</button>
-                    <button id="AboutUsButton" class="bg-info text-light" (click)="onSaveClick()" *ngIf="editMode"><i
-                            class="far fa-save"></i>
-                        Save</button>
-                </div>
-                <div id="collapse1" class="card-body">
-                    <textarea *ngIf="editMode" class="card-text">about the company</textarea>
-                    <p *ngIf="!editMode" class="card-text">about the company</p>
-                </div>
-            </div>
+            </div>            
             <div class="card">
                 <div class="card-body">
                     <input id="inputSearch" placeholder="Candidate search" [(ngModel)]="cvTitleForSearch">
                     <button id="searchCandidatebutton" class="btn btn-info btn-text-light"
                         (click)="onSearchCVByTitle(cvTitleForSearch)"> search</button>
-                    <app-cv-list (selected)='setSelectedCVViewModel($event)' [selectedCV]="selectedCV"
-                        [listCV]="listCVs"></app-cv-list>
+                    <app-cv-list
+                     (selected)='setSelectedCVViewModel($event)' [selectedCV]="selectedCV"
+                        [listCV]="listCVs"></app-cv-list
+                        >
                 </div>
+            </div>
+            <div class="card-body">              
+                <app-job-list
+                    (selected)='setSelectedJobViewModel($event)'
+                    [selectedJob]="selectedJob"
+                    [jobs]="listJob"
+                    [displayEditDeleteButton]="user.type=='Company'">
+                </app-job-list>
             </div>
         </div>
         <div class="col-lg-9">
@@ -50,14 +44,14 @@
                         <i class="far fa-edit"></i>
                         Create</button>
                 </div>
+                <div class="card-body" *ngIf="listJob.length>0">     
+                    <app-job-view
+                        [job]='selectedJob'
+                        (edit)="onShowAddEditJobModal(selectedJob)"
+                        (delete)="onShowDeleteJobModal(selectedJob)"
+                        [displayEditDeleteButton]="user.type=='Company'"                        
 
-                <div class="card-body">
-                    <p class="card-text"> here goes the list of jobs of this company</p>
-                    <app-job-offers>
-                        (selected)='setSelectedJobViewModel($event)'
-                        [selectedJob]="selectedJob"
-                        [jobs]="jobs"
-                    </app-job-offers>
+                    ></app-job-view>
                 </div>
             </div>
         </div>

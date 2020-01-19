@@ -11,6 +11,7 @@ import { JobModalComponent } from './job-modal/job-modal.component';
 import { JobDeleteConfirmComponent } from '../job-offers/components/job-delete-confirm/job-delete-confirm.component';
 import { CV } from 'src/app/common/models/cv-model';
 import { jobService } from 'src/app/common/services/job.service';
+import { of } from 'rxjs';
 
 const DEFAULT_Job: any = {};
 @Component({
@@ -26,6 +27,7 @@ export class JobOffersComponent extends AbstractForm implements OnInit {
   activeUser: ActiveUser;
   selectedJob: CV = DEFAULT_Job;
   user: Company = {} as any;
+  allJobs: Job[];
   @Output() jobs: Job[];
 
   constructor(
@@ -41,15 +43,21 @@ export class JobOffersComponent extends AbstractForm implements OnInit {
 
   ngOnInit() {
     const keyword = this.route.snapshot.queryParams.keyword;
-    const jobs$ = this.searchJobService.getJobs(keyword);
+    // const jobs$ = this.searchJobService.getJobs(keyword);
 
-    jobs$.pipe(
-      takeUntil(this._unsubscribe$)
-    ).subscribe((jobs) => {
-      this.jobs = jobs;
+    // jobs$.pipe(
+    //   takeUntil(this._unsubscribe$)
+    // ).subscribe((jobs) => {
+    //   this.jobs = jobs;
+    //   this.jobItemToView = this.jobs[0];
+    // });
+    this.jobService
+    .getAllJobs()
+    .subscribe((listJob) => {
+      this.jobs = listJob;
+      this.allJobs=listJob;
       this.jobItemToView = this.jobs[0];
     });
-
     this.keyword = keyword;
 
     this.userService.getActiveUser().pipe(
@@ -65,48 +73,32 @@ export class JobOffersComponent extends AbstractForm implements OnInit {
       this.newSearch();
     }
   }
+   filter = (predicate, array: any) => {
+    const result = [];
+    for (let index = 0; index < array.length; index++) {
+      if (predicate(array[index])) {
+        result.push(array[index]);
+      }
+    }
+    return result;
+  };
 
   newSearch() {
-    this.searchJobService.getJobs(this.filterKeyWord).subscribe((jobs) => {
-      this.jobs = jobs;
-      this.jobItemToView = this.jobs[0];
-    });
-    console.log(this.filterKeyWord);
-  }
-  onShowAddEditJobModal(job: Job) {
-    const modalRef = this.modalService.open(JobModalComponent);
-    modalRef.componentInstance.job = {
-      ...job
-    };
-    modalRef.close = (job) => {
-      this.upsertJob(job)
-        .then((addedOrUpdatedJob) => {
-          if (!job.id) {
-            this.addToJobListViewModel(addedOrUpdatedJob);
-          } else {
-            this.updateJob(addedOrUpdatedJob);
-          }
-          modalRef.dismiss();
-        },
-        (err) => {
-          console.error(err);
-        });
+    const byName = (job) => job.title.indexOf(this.filterKeyWord) > -1;
+  
+    let filteredJobs = [];
+    if (this.filterKeyWord == undefined) {
 
+      filteredJobs = this.allJobs;
+    } else {
+      filteredJobs = this.filter(byName, this.allJobs);
     }
-  }
-  onShowDeleteJobModal(job: Job) {
-    const modalRef = this.modalService.open(JobDeleteConfirmComponent);
-    modalRef.componentInstance.jobTitle = job.title
-    modalRef.close = () => {
-      this.removeJob(job)
-        .then((job) => {
-          this.removeFromJobListViewModel(job);
-          this.selectFirstJobViewModel(this.jobs);
-          modalRef.dismiss();
-        }, (err) => {
-          console.error(err);
-        });
-    }
+    console.log('jobName:', this.filterKeyWord);   
+    
+      this.jobs = filteredJobs;
+      this.jobItemToView = this.jobs[0];
+ 
+   
   }
   receivedOnJobItemClick($event) {
     this.jobItemToView = $event;
@@ -115,52 +107,8 @@ export class JobOffersComponent extends AbstractForm implements OnInit {
   editbDeleteJob() {
 
   }
-  addToJobListViewModel(job) {
-    this.jobs.push(job);
-  }
-  updateJob(job: Job) {   
-      const foundJob = this.jobs.find((item) => item.id === job.id);
-      Object.assign(foundJob, job);    
-  } 
+
   setSelectedJobViewModel(job) {
     this.selectedJob = job;
   }
-
-
-  removeFromJobListViewModel(job) {
-    const index = this.jobs.findIndex((item) => item.id === job.id);
-    this.jobs.splice(index, 1);
-  }
-  selectFirstJobViewModel(jobs: Job[]) {
-    const firstJob = jobs[0] || DEFAULT_Job;
-    this.setSelectedJobViewModel(firstJob);
-  }
-
-  upsertJob(job: Job): Promise<Job> {
-    return new Promise((resolve, reject) => {
-      this.jobService.upsertJob({
-        id: job.id,
-        title: job.title,
-        description: job.description,
-        type: job.type,
-        date: job.date,
-        userEmail: this.user.userEmail
-      }).subscribe((job) => {
-        resolve(job);
-      }, (error) => {
-        reject(error);
-      });
-    });
-  }
-
-  removeJob(job: Job) {
-    return new Promise((resolve, reject) => {
-      this.jobService.removeJob(job.id).subscribe((job) => {
-        resolve(job);
-      }, (error) => {
-        reject(error);
-      });
-    });
-  }
-
 }

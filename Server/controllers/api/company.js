@@ -1,5 +1,5 @@
 import * as company  from "../../models/company";
-import * as job from "../../models/job"
+import * as Jobs from "../../models/job"
 
 export function getJobs(req, res) {
     const userEmail = req.query.userEmail;

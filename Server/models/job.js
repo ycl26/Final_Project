@@ -10,6 +10,7 @@ const jobSchema = Schema({
   description: String,
   type: String,
   companyLogo: String,
+  address: String,
   companyName: String, // ref to Company
   userEmail: String // Company ref
 });
@@ -30,8 +31,16 @@ export const getAllByUserEmail = (userEmail) => {
   return Job
     .find({ userEmail })
     .then((foundJobs) => {
-      const cvs = foundJobs && foundJobs.map(jobUtils.toPlainObject);
-      return job;
+      const jobs = foundJobs && foundJobs.map(jobUtils.toPlainObject);
+      return jobs;
+    });
+};
+export const getAllJobs = () => {
+  return Job
+    .find({})
+    .then((foundJobs) => {
+      const jobs = foundJobs && foundJobs.map(jobUtils.toPlainObject);
+      return jobs;
     });
 };
 export function createJobOffer(job) {
@@ -74,6 +83,7 @@ export function upsertJob(job) {
           description: job.description,
           type: job.type,
           companyLogo: job.companyLogo,
+          address: job.address,
           // companyName: job.companyName, Not needed
           userEmail: job.userEmail,
         }
@@ -99,7 +109,7 @@ export function removeJob(job) {
           reject(err);
           return
         }
-        resolve(JobUtils.toPlainObject(removeJob));
+        resolve(jobUtils.toPlainObject(removeJob));
       });
   });
 }

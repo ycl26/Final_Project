@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { SearchJobService } from '../../services/search-job.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Job } from 'src/app/common/models/job-model';
@@ -12,6 +12,9 @@ import { Job } from 'src/app/common/models/job-model';
 export class JobViewComponent implements OnInit {
   @Input() job: Job;
   @Input() displayEditDeleteButton: boolean;
+  @Output() edit = new EventEmitter();
+  @Output() delete = new EventEmitter();
+
   constructor(
     private route: ActivatedRoute,
     private searchJobService: SearchJobService,
@@ -21,5 +24,13 @@ export class JobViewComponent implements OnInit {
   }
 
   ngOnInit() {
+  }
+
+  onEditClick() {
+    this.edit.emit();
+  }
+
+  onDeleteClick() {
+   this.delete.emit();
   }
 }

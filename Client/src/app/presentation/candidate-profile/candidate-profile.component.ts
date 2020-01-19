@@ -136,7 +136,6 @@ export class CandidateProfileComponent extends AbstractForm implements OnInit {
     const firstCV = listCV[0] || DEFAULT_CV;
     this.setSelectedCVViewModel(firstCV);
   }
-
   addToCVListViewModel(cv) {
     this.listCV.push(cv);
   }

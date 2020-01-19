@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { of } from 'rxjs';
+import { jobService } from '../../../common/services/job.service';
 
 const filter = (predicate, array: any) => {
   const result = [];
@@ -19,7 +20,7 @@ export class SearchJobService {
   cacheJobs: any[];
 
   constructor() {
-    this.cacheJobs = this._createMockJobs();
+    this.cacheJobs = this._createMockJobs();    
   }
 
   getJobs(jobName: string) {
@@ -35,7 +36,7 @@ export class SearchJobService {
     console.log('jobName:', jobName);
     return of(filteredJobs);
   }
-
+// mock and service used before persistence
   _createMockJobs() {
     let i = 0;
     return [

@@ -39,6 +39,18 @@ export class jobService {
       map(handleResponse),
     );
   }
+  
+  getAllJobs() {
+    console.log('khaf,jhv')
+    const result$ = this.httpClient.get(`${apiUrl}/job/alljobs`, {   
+      params: {},  
+      observe: 'response',
+      withCredentials: true
+    });
+    return result$.pipe(
+      map(handleResponse),
+    );
+  }
 
   findByTitle(title: string) {
     const result$ = this.httpClient.get(`${apiUrl}/job/findbytitle`, {

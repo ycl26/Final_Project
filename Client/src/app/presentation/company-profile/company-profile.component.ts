@@ -6,9 +6,6 @@ import { CV } from 'src/app/common/models/cv-model';
 import { JobModalComponent } from '../job-offers/job-modal/job-modal.component';
 import { JobDeleteConfirmComponent } from '../job-offers/components/job-delete-confirm/job-delete-confirm.component';
 import { Company } from 'src/app/common/models/user-model';
-
-
-
 import { Route, ActivatedRoute, Router } from '@angular/router';
 import { UserService, Error } from 'src/app/common/services/user.service';
 import { AbstractForm } from 'src/infra/form/abstract-form';
@@ -23,15 +20,18 @@ const DEFAULT_Job: any = {};
   templateUrl: './company-profile.component.html',
   styleUrls: ['./company-profile.component.css']
 })
-export class CompanyProfileComponent implements OnInit {
+export class CompanyProfileComponent extends AbstractForm implements OnInit {
   editMode: boolean;
   newJobTitle = 'New Job Title';
-  @Input() jobs: Job[];
+  @Input() jobs: Job[];  
   listCVs: CV[];
+  listJob: Job[]=[];
   selectedCV: CV = {} as CV;
   cvTitleForSearch: string = ""; 
   user: Company = {} as any;
-  selectedJob: CV = DEFAULT_Job;
+  selectedJob: Job = DEFAULT_Job; 
+  newOrEditJob: Job = {} as any;
+  @ViewChild("modal", { static: true }) modal: ElementRef;
 
   constructor(
     private jobService: jobService,
@@ -40,40 +40,34 @@ export class CompanyProfileComponent implements OnInit {
     private routerService: Router,
     private userService: UserService,
     private modalService: NgbModal
-  ) { }
+  ) {
+    super();
+  }
 
   ngOnInit() {
-
+    this.newOrEditJob = this.createNewJob();
+    this.userService
+      .getActiveUser()
+      .pipe(
+        filter((user) => user.type === UserType.Company)
+      )
+      .subscribe((user: Company) => {
+        this.user = user;  
+        this.getListJob(user.userEmail);           
+      });
+      this.jobService.getListJob(this.user.userEmail).subscribe((Jobs: Job[])=>{
+        this.listJob = Jobs;
+      }      
+      );
   }
-  onEditClick() {
-    this.editMode = true;
-  }
-
-  onSaveClick() {
-    this.editMode = false;
-  }
-
-  onSearchCVByTitle(cvTitle: string) {
-    return this.searchCVByTitle(cvTitle)
-      .then((CVs) => {
-        this.listCVs = CVs;
-      })
-  }
-
-  setSelectedCVViewModel(cv: CV) {
-    this.selectedCV = cv;
-  }
-
-  searchCVByTitle(cvTitle: string): Promise<CV[]> {
-    return new Promise((resolve, reject) => {
-      this.cvService
-        .findByTitle(cvTitle)
-        .subscribe((CVs) => {
-          resolve(CVs);
-        }, (error) => {
-          reject(error);
-        });
-    });
+ 
+  getListJob(userEmail) {
+    this.jobService
+      .getListJob(userEmail)
+      .subscribe((listJob) => {
+        this.listJob = listJob;
+        this.selectFirstJobViewModel(listJob);
+      });
   }
 
   createNewJob() {
@@ -91,6 +85,7 @@ export class CompanyProfileComponent implements OnInit {
         .then((addedOrUpdatedJob) => {
           if (!job.id) {
             this.addToJobListViewModel(addedOrUpdatedJob);
+            this.selectFirstJobViewModel(this.listJob);
           } else {
             this.updateJob(addedOrUpdatedJob);
           }
@@ -99,19 +94,7 @@ export class CompanyProfileComponent implements OnInit {
         (err) => {
           console.error(err);
         });
-
     }
-  }
-  
-  addToJobListViewModel(job) {
-    this.jobs.push(job);
-  }
-  updateJob(job: Job) {   
-      const foundJob = this.jobs.find((item) => item.id === job.id);
-      Object.assign(foundJob, job);    
-  } 
-  setSelectedJobViewModel(job) {
-    this.selectedJob = job;
   }
 
   onShowDeleteJobModal(job: Job) {
@@ -121,20 +104,12 @@ export class CompanyProfileComponent implements OnInit {
       this.removeJob(job)
         .then((job) => {
           this.removeFromJobListViewModel(job);
-          this.selectFirstJobViewModel(this.jobs);
+          this.selectFirstJobViewModel(this.listJob);
           modalRef.dismiss();
         }, (err) => {
           console.error(err);
         });
     }
-  }
-  removeFromJobListViewModel(job) {
-    const index = this.jobs.findIndex((item) => item.id === job.id);
-    this.jobs.splice(index, 1);
-  }
-  selectFirstJobViewModel(jobs: Job[]) {
-    const firstJob = jobs[0] || DEFAULT_Job;
-    this.setSelectedJobViewModel(firstJob);
   }
 
   upsertJob(job: Job): Promise<Job> {
@@ -161,6 +136,50 @@ export class CompanyProfileComponent implements OnInit {
       }, (error) => {
         reject(error);
       });
+    });
+  }
+  
+  setSelectedJobViewModel(job) {
+    this.selectedJob = job;
+  }
+
+  selectFirstJobViewModel(jobs: Job[]) {
+    const firstJob = jobs[0] || DEFAULT_Job;
+    this.setSelectedJobViewModel(firstJob);
+  }
+  addToJobListViewModel(job) {
+    this.listJob.push(job);
+  }
+  removeFromJobListViewModel(job) {
+    const index = this.listJob.findIndex((item) => item.id === job.id);
+    this.listJob.splice(index, 1);
+  }
+ 
+  updateJob(job: Job) {   
+      const foundJob = this.listJob.find((item) => item.id === job.id);
+      Object.assign(foundJob, job);    
+  }   
+
+  onSearchCVByTitle(cvTitle: string) {
+    return this.searchCVByTitle(cvTitle)
+      .then((CVs) => {
+        this.listCVs = CVs;
+      })
+  }
+
+  setSelectedCVViewModel(cv: CV) {
+    this.selectedCV = cv;
+  }
+
+  searchCVByTitle(cvTitle: string): Promise<CV[]> {
+    return new Promise((resolve, reject) => {
+      this.cvService
+        .findByTitle(cvTitle)
+        .subscribe((CVs) => {
+          resolve(CVs);
+        }, (error) => {
+          reject(error);
+        });
     });
   }
 }

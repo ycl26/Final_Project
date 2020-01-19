@@ -46,13 +46,13 @@
     </section>
   </div>
   <div class="row">
-    <div class="col-lg-5">
-      <app-job-list (jobItemClick)="receivedOnJobItemClick($event)" [displayEditDeleteButton]="activeUser.type=='Company'" [jobs]="jobs"></app-job-list>
+    <div class="col-lg-5">    
+      <app-job-list (selected)="receivedOnJobItemClick($event)" [displayEditDeleteButton]="activeUser.type=='Company'" [jobs]="jobs"></app-job-list>
     </div>
     <div class="col-lg-7">
       <app-job-view  
-      (edit)="onShowAddEditJobModal(selectedJob)"
-      (delete)="onShowDeleteJobModal(selectedJob)" [displayEditDeleteButton]="activeUser.type=='Company'"  [job]="jobItemToView"></app-job-view>
+      [displayEditDeleteButton]="activeUser.type=='Company'"
+      [job]="jobItemToView"></app-job-view>
     </div>
   </div>
 </div>
