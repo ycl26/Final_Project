@@ -1,9 +1,11 @@
 export class Job {
     id: string;
     title: string;
-    date: Date;
+    date: String;
     description: string;
     type: string;
+    salary: string;
+    reqSkills: string;
     companyLogo: string;
-    companyName: string;
+    compName: string;
 }

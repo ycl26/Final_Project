@@ -3,6 +3,10 @@
 </div>
 <div class="modal-body">
     <div class="col form-group">
+        <label for="CompanyName">Company Name</label>
+        <input name="CompanyName" id="CompanyName" class="form-control" [(ngModel)]="job.compName">
+    </div>
+    <div class="col form-group">
         <label for="JobTitle"> Job Title</label>
         <input name="JobTitle" id="JobTitle" class="form-control" [(ngModel)]="job.title">
     </div>
@@ -11,8 +15,16 @@
         <textarea name="JobDescription" id="JobDescription" class="form-control"  [(ngModel)]="job.description"></textarea>
     </div>
     <div class="col form-group">
+        <label for="JobSalary"> Salary</label>
+        <textarea name="JobSalary" id="JobSalary" class="form-control"  [(ngModel)]="job.salary"></textarea>
+    </div>
+    <div class="col form-group">
         <label for="JobType">Job Type</label>
         <textarea name="JobType" id="JobType" class="form-control"  [(ngModel)]="job.type"></textarea>
+    </div>
+    <div class="col form-group">
+        <label for="JobRequiredSkills"> Required Skills</label>
+        <textarea name="JobRequiredSkills" id="JobRequiredSkills" class="form-control"  [(ngModel)]="job.reqSkills"></textarea>
     </div>
     <div class="col form-group">
         <label for="JobDate"> Date</label>

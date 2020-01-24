@@ -4,9 +4,11 @@ export const toPlainObject = (job) => {
     title: job.title,
     date: job.date,
     description: job.description,
+    salary: job.salary,
+    reqSkills: job.reqSkills,
     type: job.type,
     address: job.address,
     companyLogo: job.companyLogo,
-    companyName: job.companyName,
+    compName: job.compName,
   };
 };

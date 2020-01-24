@@ -8,7 +8,7 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./job-modal.component.css']
 })
 export class JobModalComponent implements OnInit {
-  @Input() job: Job;
+  @Input() job: Job; 
   constructor(public activeModal: NgbActiveModal) { }
 
   ngOnInit() {

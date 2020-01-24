@@ -32,6 +32,7 @@ export class CompanyProfileComponent extends AbstractForm implements OnInit {
   selectedJob: Job = DEFAULT_Job; 
   newOrEditJob: Job = {} as any;
   @ViewChild("modal", { static: true }) modal: ElementRef;
+  
 
   constructor(
     private jobService: jobService,
@@ -118,8 +119,11 @@ export class CompanyProfileComponent extends AbstractForm implements OnInit {
         id: job.id,
         title: job.title,
         description: job.description,
+        salary: job.salary,
+        reqSkills:job.reqSkills,
         type: job.type,
         date: job.date,
+        compName: job.compName,
         userEmail: this.user.userEmail
       }).subscribe((job) => {
         resolve(job);
@@ -143,8 +147,8 @@ export class CompanyProfileComponent extends AbstractForm implements OnInit {
     this.selectedJob = job;
   }
 
-  selectFirstJobViewModel(jobs: Job[]) {
-    const firstJob = jobs[0] || DEFAULT_Job;
+  selectFirstJobViewModel(listJob: Job[]) {
+    const firstJob = listJob[0] || DEFAULT_Job;
     this.setSelectedJobViewModel(firstJob);
   }
   addToJobListViewModel(job) {

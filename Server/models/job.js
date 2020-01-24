@@ -6,12 +6,14 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const jobSchema = Schema({
   title: String,
-  date: Date,
+  date: String,
   description: String,
+  salary: String,
+  reqSkills: String,
   type: String,
   companyLogo: String,
   address: String,
-  companyName: String, // ref to Company
+  compName: String, // ref to Company
   userEmail: String // Company ref
 });
 const Job = mongoose.model('Job', jobSchema);
@@ -49,8 +51,10 @@ export function createJobOffer(job) {
     date: job.date,
     description: job.description,
     type: job.type,
+    salary: job.salary,
+    reqSkills: job.reqSkills,
     companyLogo: job.companyLogo,
-    companyName: job.companyName,
+    compName: job.compName,
     userEmail: job.userEmail,
   });
   return newJob.save().then((createdJob) => {
@@ -82,9 +86,11 @@ export function upsertJob(job) {
           date: job.date,
           description: job.description,
           type: job.type,
+          salary: job.salary,
+          reqSkills: job.reqSkills,
           companyLogo: job.companyLogo,
+          compName: job.compName,
           address: job.address,
-          // companyName: job.companyName, Not needed
           userEmail: job.userEmail,
         }
       },

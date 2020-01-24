@@ -22,23 +22,29 @@ function insertJob() {
     date: 'a',
     description: 'a',
     type: 'a',
+    salary: 'a',
+    reqSkills: 'a',
     companyLogo: 'a',
-    companyName: 'A',
+    compName: 'A',
   });
   jobModel.createJobOffer({
     title: 'b',
     date: 'b',
     description: 'b',
     type: 'b',
-    companyLogo: 'b',
-    companyName: 'B',
+    salary: 'b',
+    reqSkills: 'b',
+    companyLogo: 'b',   
+    compName: 'B',
   });
   jobModel.createJobOffer({
     title: 'c',
     date: 'c',
     description: 'c',
     type: 'c',
+    salary: 'c',
+    reqSkills: 'b',
     companyLogo: 'c',
-    companyName: 'C',
+    compName: 'C',
   });
 }

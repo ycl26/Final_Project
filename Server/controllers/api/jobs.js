@@ -4,9 +4,12 @@ export function upsertJob(req, res) {
   jobModel.upsertJob({
     id: req.body.id,
     title: req.body.title,
+    salary: req.body.salary,
     description: req.body.description,
+    reqSkills: req.body.reqSkills,
+    date: req.body.date,
     type: req.body.type,
-    companyName: req.body.companyName,
+    compName: req.body.compName,
     userEmail: req.body.userEmail // Company reference  
   }).then((job) => {
     res.json({

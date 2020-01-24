@@ -2,7 +2,7 @@
     <div class="card-header bg-info text-light">
         <div class="col-xs-8">
             <img id="JobCompanyLogo" class="card-img-left">
-            <h3 id="jobTitletext"><span>{{job.title}}</span></h3>
+            <h3 id="jobTitletext"><span>{{job.compName}}</span></h3>
         </div>
         <div class="col-xs-4">
             <button class="bg-info text-light"  *ngIf="displayEditDeleteButton" (click)="onEditClick()"><i class="far fa-edit"></i>
@@ -16,14 +16,12 @@
 
     <div class="card-body text-info">
         <h3 class="card-title">{{job.title}}</h3>    
-        <p class="card-text"> Job type: {{job.type}}</p>
-        <p class="card-text"> {{job.description}}</p>
-    </div>
-    <div class="card-footer bg-info text-light">
-        <p class="card-text">{{job.date}} <button class="bg-info text-light" *ngIf="!displayEditDeleteButton"><i
-                    class="fas fa-share-square"></i>
-                Apply</button>
-    </div>
+        <p class="card-text"> Job Description: {{job.description}}</p>       
+        <p class="card-text"> Job type: {{job.type}}</p>      
+        <p class="card-text"> Salary: {{job.salary}}</p>
+        <p class="card-text"> Required Skills: {{job.reqSkills}}</p>
+        <p class="card-text">Date: {{job.date}}</p>
+    </div>   
 </div>
 <div *ngIf="!job">
     Loading ...
