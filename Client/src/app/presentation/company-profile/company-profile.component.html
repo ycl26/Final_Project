@@ -10,28 +10,28 @@
                     <ul id="home" class="list-group list-group-flush">
                         <li class="list-group-item">
                             <h6 class="card-text text-info"><i class="fas fa-envelope"></i> {{user.userEmail}}</h6>
-                            <h6 class="card-text text-info"><i class="fas fa-id-card"></i>  {{user.address}}</h6>                            
+                            <h6 class="card-text text-info"><i class="fas fa-id-card"></i> {{user.address}}</h6>
                     </ul>
                 </div>
-            </div>            
+            </div>
             <div class="card">
                 <div class="card-body">
                     <input id="inputSearch" placeholder="Candidate search" [(ngModel)]="cvTitleForSearch">
                     <button id="searchCandidatebutton" class="btn btn-info btn-text-light"
                         (click)="onSearchCVByTitle(cvTitleForSearch)"> search</button>
-                    <app-cv-list
-                     (selected)='setSelectedCVViewModel($event)' [selectedCV]="selectedCV"
-                        [listCV]="listCVs"></app-cv-list
-                        >
+                    <app-cv-list (selected)='setSelectedCVViewModel($event)' [selectedCV]="selectedCV"
+                        [listCV]="listCVs"></app-cv-list>
                 </div>
             </div>
-            <div class="card-body">              
-                <app-job-list
-                    (selected)='setSelectedJobViewModel($event)'
-                    [selectedJob]="selectedJob"
-                    [jobs]="listJob"
-                    [displayEditDeleteButton]="user.type=='Company'">
-                </app-job-list>
+            <div id="rightSide" class="card">
+                <h5 class=" card-header card-text text-info">
+                    Created Jobs
+                </h5>
+                <div  class="card-body">
+                    <app-job-list (selected)='setSelectedJobViewModel($event)' [selectedJob]="selectedJob"
+                        [jobs]="listJob" [displayEditDeleteButton]="user.type=='Company'">
+                    </app-job-list>
+                </div>
             </div>
         </div>
         <div class="col-lg-9">
@@ -44,15 +44,12 @@
                         <i class="far fa-edit"></i>
                         Create</button>
                 </div>
-                <div class="card-body" *ngIf="listJob.length>0">     
-                    <app-job-view
-                        [job]='selectedJob'
-                        (edit)="onShowAddEditJobModal(selectedJob)"
-                        (delete)="onShowDeleteJobModal(selectedJob)"
-                        [displayEditDeleteButton]="user.type=='Company'"                        
-
-                    ></app-job-view>
+                <div class="card-body" *ngIf="listJob.length>0">
+                    <app-job-view [job]='selectedJob' (edit)="onShowAddEditJobModal(selectedJob)"
+                        (delete)="onShowDeleteJobModal(selectedJob)" [displayEditDeleteButton]="user.type=='Company'">
+                    </app-job-view>
                 </div>
             </div>
         </div>
     </div>
+</div>
