@@ -1,0 +1,6 @@
+{"_id":{"$oid":"5e1274da1bde71383655b7eb"},"__v":{"$numberInt":"0"},"education":"some","languages":"english","profile":"my first cv here","title":"first cv","userEmail":"l","workExp":"none"}
+{"_id":{"$oid":"5e1d259c54679d2c0f7b0893"},"__v":{"$numberInt":"0"},"education":"MCIT","languages":"English, French","profile":"I am a Developer","title":"Developer","userEmail":"firstcandidate@gmail.com","workExp":"None"}
+{"_id":{"$oid":"5e1d25d354679d2c0f7b0894"},"__v":{"$numberInt":"0"},"education":"UdeM","languages":"English, French","profile":"I am an Engineer","title":"Engineer","userEmail":"firstcandidate@gmail.com","workExp":"Some"}
+{"_id":{"$oid":"5e235bf7755ad0d8174fb361"},"__v":{"$numberInt":"0"},"education":"bac","languages":"english","profile":"another","title":"teacher","userEmail":"firstcandidate@gmail.com","workExp":"some"}
+{"_id":{"$oid":"5e2cfdcb0dd4ae383d9c2822"},"__v":{"$numberInt":"0"},"education":"some","languages":"well","profile":"i am a chofer","title":"Chofer","userEmail":"firstcandidate@gmail.com","workExp":"none"}
+{"_id":{"$oid":"5e2cfdfa0dd4ae383d9c2823"},"__v":{"$numberInt":"0"},"education":"what are you asking, please","languages":"more than 5","profile":"I am a professor","title":"professor","userEmail":"firstcandidate@gmail.com","workExp":"a lot "}

@@ -1,0 +1,2 @@
+{"_id":{"$oid":"5e1e7b736b341d9c12807913"},"companyName":"company2","userEmail":"company2@gmail.com","password":"12","address":"rue p","jobsOffers":[],"__v":{"$numberInt":"0"}}
+{"_id":{"$oid":"5e290af1ab5517282cdd552c"},"companyName":"company1","userEmail":"company1@gmail.com","password":"12","address":"rue 15","jobsOffers":[],"__v":{"$numberInt":"0"}}
